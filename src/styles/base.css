@@ -1,0 +1,29 @@
+/* Reset and global styles */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  line-height: 1.6;
+}
+
+body, p, li, a, span, input, textarea, button {
+  font-size: 1.1rem;
+}
+
+* {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+
+.books-page h1, .home-page h1, .about-page h1, .writings-page h1, .contact-page h1, .testimonial-page h1 {
+  font-size: 2rem;
+  text-align: center;
+}
