@@ -12,8 +12,8 @@ import Artwork from './components/Artwork';
 // Main App component that sets up routing for the site
 export default function App() {
   return (
-    // Set up React Router for client-side navigation
-    <Router>
+    // Set up React Router for client-side navigation with GitHub Pages basename
+    <Router basename="/jeemesakers.com">
       {/* Layout component wraps all pages (e.g., header, footer, nav) */}
       <Layout>
         <Routes>
@@ -27,6 +27,8 @@ export default function App() {
           <Route path="/posts/:slug" element={<Missive />} />      {/* Individual missive/post */}
           <Route path="/artwork" element={<Artwork />} />          {/* Artwork gallery */}
           <Route path="/post/:oldSlug" element={<Navigate to="/writings" replace />} />
+          {/* Catch-all route - redirect any unmatched routes to home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
           {/* Optionally, handle any other unmatched routes */}
         </Routes>
       </Layout>
