@@ -4,10 +4,13 @@
   "private": true,
   "description": "",
   "main": "index.js",
+  "homepage": "https://bethsitruc.github.io/jeemesakers",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
