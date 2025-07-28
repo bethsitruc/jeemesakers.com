@@ -7,7 +7,7 @@ import mdx from '@mdx-js/rollup'; // MDX plugin to support .mdx files
 
 // Export the Vite configuration
 export default defineConfig({
-  base: '/jeemesakers/', // GitHub Pages base path (matches your homepage in package.json)
+  base: '/jeemesakers.com/', // GitHub Pages base path (matches actual repository name)
   plugins: [
     react(), // Enables React fast refresh and JSX support
     mdx(),   // Allows importing and using MDX files as components
