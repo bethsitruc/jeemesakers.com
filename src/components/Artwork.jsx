@@ -104,7 +104,11 @@ const ArtworkPage = () => {
 								className={`artwork-tile ${
 									expandedTiles[`${section.section}-${index}`] ? 'expanded' : ''
 								}`}
-								onClick={() => toggleTile(`${section.section}-${index}`)}
+								onClick={(e) => {
+									e.preventDefault();
+									e.stopPropagation();
+									toggleTile(`${section.section}-${index}`);
+								}}
 								style={{ cursor: 'pointer' }}
 							>
 								<div className="tile-content">
@@ -131,11 +135,13 @@ const ArtworkPage = () => {
 												tabIndex={0}
 												role="button"
 												onClick={(e) => {
+													e.preventDefault();
 													e.stopPropagation();
 													toggleTile(`${section.section}-${index}`);
 												}}
 												onKeyPress={(e) => {
 													if (e.key === 'Enter' || e.key === ' ') {
+														e.preventDefault();
 														e.stopPropagation();
 														toggleTile(`${section.section}-${index}`);
 													}
