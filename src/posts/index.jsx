@@ -53,7 +53,7 @@ export const posts = [
   //   metadata: {
   //     title: 'Medieval Pilgrimages: The Camino De Santiago (Seventh River Cruise Missive)',
   //     date: formatDate('2025-05-17'),
-  //     image: '/images/missives/seashell.png',
+  //     image: './images/missives/seashell.png',
   //   },
   // },
   {
@@ -62,7 +62,7 @@ export const posts = [
     metadata: {
       title: 'Thoughts On July 4',
       date: formatDate('2025-07-04'),
-      image: '/images/missives/american-flag.png',
+      image: './images/missives/american-flag.png',
     },
   },
   {
@@ -71,7 +71,7 @@ export const posts = [
     metadata: {
       title: 'Revisiting The Cinema Of Grand Illusions - The Wisdom Corridor',
       date: formatDate('2025-05-28'),
-      image: '/images/missives/cinema-of-grand-illusions.png',
+      image: './images/missives/cinema-of-grand-illusions.png',
     },
   },
   {
@@ -80,7 +80,7 @@ export const posts = [
     metadata: {
       title: 'Medieval Pilgrimages: The Camino De Santiago (Seventh River Cruise Missive)',
       date: formatDate('2025-05-17'),
-      image: '/images/missives/seashell.png',
+      image: './images/missives/seashell.png',
     },
   },
   {
@@ -89,7 +89,7 @@ export const posts = [
     metadata: {
       title: 'The Last Magician: Johannes Kepler (Sixth River Cruise Missive)',
       date: formatDate('2025-05-04'),
-      image: '/images/missives/TheLastMagician.png',
+      image: './images/missives/TheLastMagician.png',
     },
   },
   {
@@ -98,7 +98,7 @@ export const posts = [
     metadata: {
       title: 'The Tragic Hungarian Revolution of 1956 (Fifth River Cruise Missive)',
       date: formatDate('2025-05-01'),
-      image: '/images/missives/TheTragicHungarianRevolution.png',
+      image: './images/missives/TheTragicHungarianRevolution.png',
     },
   },
   {
@@ -107,7 +107,7 @@ export const posts = [
     metadata: {
       title: 'Teenage Hitler in Linz and Vienna (Fourth River Cruise Missive)',
       date: formatDate('2025-04-15'),
-      image: '/images/missives/Hitler.png',
+      image: './images/missives/Hitler.png',
     },
   },
   {
@@ -116,7 +116,7 @@ export const posts = [
     metadata: {
       title: 'The World’s Richest Spy (Third River Cruise Missive)',
       date: formatDate('2025-04-09'),
-      image: '/images/missives/TheWorldSRichestSpy.png',
+      image: './images/missives/TheWorldSRichestSpy.png',
     },
   },
   {
@@ -125,7 +125,7 @@ export const posts = [
     metadata: {
       title: 'One of History\'s Inflection Points (Second River Cruise Missive)',
       date: formatDate('2025-04-05'),
-      image: '/images/missives/HistorysInflection.png',
+      image: './images/missives/HistorysInflection.png',
     },
   },
   {
@@ -134,7 +134,7 @@ export const posts = [
     metadata: {
       title: 'The Tragic Empress Sisi (First River Cruise Missive)',
       date: formatDate('2025-04-01'),
-      image: '/images/missives/EmpressSisi.png',
+      image: './images/missives/EmpressSisi.png',
     },
   },
   {
@@ -143,7 +143,7 @@ export const posts = [
     metadata: {
       title: 'The Mighty Oak Has Fallen',
       date: formatDate('2025-02-23'),
-      image: '/images/missives/oak.png',
+      image: './images/missives/oak.png',
     },
   },
   {
@@ -152,7 +152,7 @@ export const posts = [
     metadata: {
       title: 'Harriette: The Grandest Dame Of Them All',
       date: formatDate('2025-02-12'),
-      image: '/images/missives/Harriette.png',
+      image: './images/missives/Harriette.png',
     },
   },
   {
@@ -161,7 +161,7 @@ export const posts = [
     metadata: {
       title: 'Mirror Universe',
       date: formatDate('2024-12-31'),
-      image: '/images/missives/MirrorUniverse.png',
+      image: './images/missives/MirrorUniverse.png',
     },
   },
   {
@@ -170,7 +170,7 @@ export const posts = [
     metadata: {
       title: 'A True Christmas Miracle',
       date: formatDate('2024-12-18'),
-      image: '/images/missives/ATrueChristmasMiracle.png',
+      image: './images/missives/ATrueChristmasMiracle.png',
     },
   },
   {
@@ -179,7 +179,7 @@ export const posts = [
     metadata: {
       title: 'Inference AI, AGI, and Human Tears',
       date: formatDate('2024-12-02'),
-      image: '/images/missives/tears.png',
+      image: './images/missives/tears.png',
     },
   },
   {
@@ -188,7 +188,7 @@ export const posts = [
     metadata: {
       title: 'From The Mound To The Bridge',
       date: formatDate('2024-10-31'),
-      image: '/images/missives/mound.png',
+      image: './images/missives/mound.png',
     },
   },
   {
@@ -197,7 +197,7 @@ export const posts = [
     metadata: {
       title: 'Exploding Pagers',
       date: formatDate('2024-09-18'),
-      image: '/images/missives/exploding-pagers.png',
+      image: './images/missives/exploding-pagers.png',
     },
   },
   {
@@ -206,7 +206,7 @@ export const posts = [
     metadata: {
       title: 'Are We Living In The End Days?',
       date: formatDate('2024-08-01'),
-      image: '/images/missives/are-we-living-in-the-end-days.png',
+      image: './images/missives/are-we-living-in-the-end-days.png',
     },
   },
   {
@@ -215,7 +215,7 @@ export const posts = [
     metadata: {
       title: 'The Loss Of A Friend',
       date: formatDate('2024-07-30'),
-      image: '/images/missives/the-loss-of-a-friend.png',
+      image: './images/missives/the-loss-of-a-friend.png',
     },
   },
   {
@@ -224,7 +224,7 @@ export const posts = [
     metadata: {
       title: 'Life\'s Road Trips',
       date: formatDate('2024-05-09'),
-      image: '/images/missives/lifes-road-trips.png',
+      image: './images/missives/lifes-road-trips.png',
     },
   },
   {
@@ -233,7 +233,7 @@ export const posts = [
     metadata: {
       title: 'The “New Equation” in the Middle East',
       date: formatDate('2024-04-19'),
-      image: '/images/missives/the-new-equation-in-the-middle-east.png',
+      image: './images/missives/the-new-equation-in-the-middle-east.png',
     },
   },
   {
@@ -242,7 +242,7 @@ export const posts = [
     metadata: {
       title: 'Sleepwalking Toward The Precipice',
       date: formatDate('2024-03-18'),
-      image: '/images/missives/sleepwalking-toward-the-precipice.png',
+      image: './images/missives/sleepwalking-toward-the-precipice.png',
     },
   },
   {
@@ -251,7 +251,7 @@ export const posts = [
     metadata: {
       title: '2024—Year Of Challenges: The Elusive Quest For Truth In An Age Of Deepfakes',
       date: formatDate('2024-02-13'),
-      image: '/images/missives/2024-year-of-challenges.png',
+      image: './images/missives/2024-year-of-challenges.png',
     },
   },
   {
@@ -260,7 +260,7 @@ export const posts = [
     metadata: {
       title: '2024—Year Of Challenges: The Houthis And The Middle East',
       date: formatDate('2024-01-18'),
-      image: '/images/missives/the-houthis-and-the-middle-east.png',
+      image: './images/missives/the-houthis-and-the-middle-east.png',
     },
   },
   {
@@ -269,7 +269,7 @@ export const posts = [
     metadata: {
       title: 'Christmas At The Beach',
       date: formatDate('2023-12-22'),
-      image: '/images/missives/christmas-at-the-beach.png',
+      image: './images/missives/christmas-at-the-beach.png',
     },
   },
   {
@@ -278,7 +278,7 @@ export const posts = [
     metadata: {
       title: 'Chained In Plato’s Cave In December 2023: Welcome To The Cinema Of Grand Illusions',
       date: formatDate('2023-12-09'),
-      image: '/images/missives/chained-in-platos-cave.png',
+      image: './images/missives/chained-in-platos-cave.png',
     },
   },
   {
@@ -287,7 +287,7 @@ export const posts = [
     metadata: {
       title: 'Can’t Get Enough Of Those Drones',
       date: formatDate('2023-12-05'),
-      image: '/images/missives/Drones.png',
+      image: './images/missives/Drones.png',
     },
   },
   {
@@ -296,7 +296,7 @@ export const posts = [
     metadata: {
       title: 'Hats and Crowns',
       date: formatDate('2023-11-30'),
-      image: '/images/missives/HatsAndCrowns.png',
+      image: './images/missives/HatsAndCrowns.png',
     },
   },
   {
@@ -305,7 +305,7 @@ export const posts = [
     metadata: {
       title: 'Six Decades Ago—The JFK Assassination',
       date: formatDate('2023-11-17'),
-      image: '/images/missives/jfk-assassination.png',
+      image: './images/missives/jfk-assassination.png',
     },
   },
   {
@@ -314,7 +314,7 @@ export const posts = [
     metadata: {
       title: 'The Lebanon Barracks’ Bombing — Forty Years Later',
       date: formatDate('2023-10-27'),
-      image: '/images/missives/the-lebanon-barracks-bombing.png',
+      image: './images/missives/the-lebanon-barracks-bombing.png',
     },
   },
   {
@@ -323,7 +323,7 @@ export const posts = [
     metadata: {
       title: 'Changes In Latitude',
       date: formatDate('2023-09-12'),
-      image: '/images/missives/changes-in-latitude.png',
+      image: './images/missives/changes-in-latitude.png',
     },
   },
   {
@@ -332,7 +332,7 @@ export const posts = [
     metadata: {
       title: 'Asteroid Riches',
       date: formatDate('2023-08-27'),
-      image: '/images/missives/asteroid-riches.png',
+      image: './images/missives/asteroid-riches.png',
     },
   },
   {
@@ -341,7 +341,7 @@ export const posts = [
     metadata: {
       title: 'After Oppenheimer',
       date: formatDate('2023-07-24'),
-      image: '/images/missives/after-oppenheimer.png',
+      image: './images/missives/after-oppenheimer.png',
     },
   },
   {
@@ -350,7 +350,7 @@ export const posts = [
     metadata: {
       title: 'Postmortem: Russia’s Wagner Group, Abortive Coup Or Sleight Of Hand?',
       date: formatDate('2023-06-28'),
-      image: '/images/missives/wagner-group.png',
+      image: './images/missives/wagner-group.png',
     },
   }
 ];
