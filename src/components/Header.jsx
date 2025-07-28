@@ -13,6 +13,7 @@ export default function Header() {
         <Link to="/about">About</Link> |{' '}
         <Link to="/books">Books</Link> |{' '}
         <Link to="/writings">Missives</Link> |{' '}
+        <Link to="/artwork">Artwork</Link> |{' '}
         <Link to="/testimonials">Testimonials</Link> |{' '}
         <Link to="/contact">Contact</Link>
       </nav>

@@ -32,6 +32,7 @@ import AfterOppenheimer from './2023-07-24-after-oppenheimer.mdx';
 import Postmortem from './2023-06-28-russias-wagner-group-abortive-coup-or-sleight-of-hand.mdx';
 import RevisitingTheCinemaOfGrandIllusions from './2025-05-28-revisiting-the-cinema-of-grand-illusions.mdx';
 import ThoughtsOnJulyFourth from './2025-07-04-thoughts-on-july-4.mdx';
+import Superintel from './2025-07-26-superintel.mdx';
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -56,6 +57,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+  {
+    slug: '2025-07-26-superintel',
+    component: Superintel,
+    metadata: {
+      title: 'A.I. Superintelligence: Near-Term Reality or Hype?',
+      date: formatDate('2025-07-26'),
+      image: '/images/missives/superintel.png',
+    },
+  },
   {
     slug: '2025-07-04-thoughts-on-july-4',
     component: ThoughtsOnJulyFourth,
