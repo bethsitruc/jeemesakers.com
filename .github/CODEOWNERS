@@ -1,0 +1,7 @@
+# Global code owners - all files require review from bethsitruc
+* @bethsitruc
+
+# Specific ownership for critical files
+/.github/ @bethsitruc
+/package.json @bethsitruc
+/vite.config.mjs @bethsitruc

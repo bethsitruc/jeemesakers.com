@@ -3,8 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # Remove pull_request trigger for security - only deploy on main branch pushes
 
 jobs:
   build-and-deploy:
