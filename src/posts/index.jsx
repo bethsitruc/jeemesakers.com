@@ -1,3 +1,4 @@
+// Import all MDX files for each missive/post
 import kepler from './2025-05-04-the-last-magician.mdx';
 import hungarianRevolution from './2025-05-01-the-tragic-hungarian-revolution.mdx';
 import historysInflection from './2025-04-05-historys-inflection.mdx';
@@ -29,8 +30,11 @@ import ChangesInLatitude from './2023-09-12-changes-in-latitude.mdx';
 import AsteroidRiches from './2023-08-27-asteroid-riches.mdx';
 import AfterOppenheimer from './2023-07-24-after-oppenheimer.mdx';
 import Postmortem from './2023-06-28-russias-wagner-group-abortive-coup-or-sleight-of-hand.mdx';
+import RevisitingTheCinemaOfGrandIllusions from './2025-05-28-revisiting-the-cinema-of-grand-illusions.mdx';
+import ThoughtsOnJulyFourth from './2025-07-04-thoughts-on-july-4.mdx';
 // import other posts as needed
 
+// Helper function to format dates as "Month Day, Year"
 const formatDate = (dateString) => {
   const [year, month, day] = dateString.split('-');
   return new Date(year, month - 1, day).toLocaleDateString('en-US', {
@@ -40,7 +44,36 @@ const formatDate = (dateString) => {
   });
 };
 
+// Array of post objects, each with a slug, component, and metadata
 export const posts = [
+  // Example post object:
+  // {
+  //   slug: '2025-05-10-medieval-pilgrimages-the-camino-de-santiago',
+  //   component: camino,
+  //   metadata: {
+  //     title: 'Medieval Pilgrimages: The Camino De Santiago (Seventh River Cruise Missive)',
+  //     date: formatDate('2025-05-17'),
+  //     image: '/images/missives/seashell.png',
+  //   },
+  // },
+  {
+    slug: '2025-07-04-thoughts-on-july-4',
+    component: ThoughtsOnJulyFourth,
+    metadata: {
+      title: 'Thoughts On July 4',
+      date: formatDate('2025-07-04'),
+      image: '/images/missives/american-flag.png',
+    },
+  },
+  {
+    slug: '2025-05-28-revisiting-the-cinema-of-grand-illusions',
+    component: RevisitingTheCinemaOfGrandIllusions,
+    metadata: {
+      title: 'Revisiting The Cinema Of Grand Illusions - The Wisdom Corridor',
+      date: formatDate('2025-05-28'),
+      image: '/images/missives/cinema-of-grand-illusions.png',
+    },
+  },
   {
     slug: '2025-05-10-medieval-pilgrimages-the-camino-de-santiago',
     component: camino,

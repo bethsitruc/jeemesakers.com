@@ -1,28 +1,30 @@
+/* Styles for testimonial tiles and content */
+
 .testimonial-tile {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 1.5rem;
-  max-width: 1000px;
-  margin-left: auto;
+  background-color: #f5f5f5; /* Light background for testimonial */
+  border-radius: 8px;        /* Rounded corners */
+  padding: 2rem;             /* Inner spacing */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  margin-bottom: 1.5rem;     /* Space below each testimonial */
+  max-width: 1000px;         /* Limit width */
+  margin-left: auto;         /* Center horizontally */
   margin-right: auto;
 }
 
 .testimonial-stars {
-  color: #f5a623; /* golden yellow for stars */
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  color: #f5a623;            /* Golden yellow for stars */
+  font-size: 1.2rem;         /* Star size */
+  margin-bottom: 0.5rem;     /* Space below stars */
 }
 
 .testimonial-quote {
-  font-style: italic;
-  margin-bottom: 1rem;
-  color: #444;
-  line-height: 1.7;
+  font-style: italic;        /* Italicize quote */
+  margin-bottom: 1rem;       /* Space below quote */
+  color: #444;               /* Quote text color */
+  line-height: 1.7;          /* Improve readability */
 }
 
 .testimonial-author {
-  font-weight: bold;
-  color: #333;
+  font-weight: bold;         /* Bold author name */
+  color: #333;               /* Author text color */
 }

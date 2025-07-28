@@ -1,39 +1,41 @@
+/* Styles for the About page layout and content */
+
 .about-tile {
-  display: flex;
-  background-color: #f5f5f5;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  gap: 2rem;
-  max-width: 1000px;
+  display: flex; /* Use flexbox for layout */
+  background-color: #f5f5f5; /* Light background */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  align-items: flex-start; /* Align items to the top */
+  border-radius: 8px; /* Rounded corners */
+  padding: 2rem; /* Space inside the tile */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  gap: 2rem; /* Space between left and right sections */
+  max-width: 1000px; /* Limit the width of the tile */
 }
 
 .about-left {
-  flex: 1 1 310px;
-  text-align: center;
+  flex: 1 1 310px; /* Flexible width, min 310px */
+  text-align: center; /* Center content horizontally */
 }
 
 .about-left img {
-  width: 423px;
-  height: 564px;
+  width: 423px; /* Fixed image width */
+  height: 564px; /* Fixed image height */
 }
 
 .about-right img {
-  width: 328px;
-  height: 174px;
+  width: 328px; /* Fixed width for images in right section */
+  height: 174px; /* Fixed height for images in right section */
 }
 
 .about-right {
-  flex: 2 1 400px;
-  text-align: left;
+  flex: 2 1 400px; /* Flexible width, min 400px */
+  text-align: left; /* Left-align content */
 }
 
 .about-right-content p {
-  text-align: left;
+  text-align: left; /* Left-align paragraphs in right content */
 }
 
 .about-right-content .signature {
-  text-align: right;
+  text-align: right; /* Right-align signature in right content */
 }

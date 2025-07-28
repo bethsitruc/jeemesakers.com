@@ -1,0 +1,154 @@
+/* Artwork Page Styles */
+.artwork-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.artwork-intro {
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: #555;
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.artwork-tile {
+  background: #fdfdfd;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 350px; /* or your preferred height */
+  max-width: 350px; /* or your preferred width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.art-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  width: 100%;
+  height: 250px; /* set a fixed height for the image container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-container img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.art-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.artwork-tile p {
+  display: none;
+}
+
+.artwork-tile.expanded p {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: left;
+}
+.artwork-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.artwork-subtitle {
+  font-weight: normal;
+  font-size: 1rem;
+  color: #777;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.art-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.read-more-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #1e90ff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.read-more-link:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .artwork-tile.expanded {
+    flex-direction: row;
+    align-items: flex-start;
+    grid-column: 1 / -1;   /* Span the entire grid width */
+    width: 100%;           /* Fill the grid container, not the viewport */
+    max-width: 1200px;     /* Match your .artwork-page max-width */
+    margin-left: 0;        /* Remove negative margin */
+    border-radius: 0;      /* Optional: keep or remove for style */
+  }
+
+  .art-container,
+  .art-text {
+    flex: 1;
+    padding: 0 1rem;
+  }
+
+  .art-text {
+    text-align: left;
+  }
+
+  .artwork-tile.expanded .tile-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}

@@ -1,8 +1,28 @@
+/* Main stylesheet that imports all section-specific and base styles */
+
+/* Base styles and CSS variables */
 @import url('styles/base.css');
+
+/* Layout and global structure */
 @import url('styles/layout.css');
+
+/* Home page specific styles */
 @import url('styles/home.css');
+
+/* Styles for the Missives (writings) section */
 @import url('styles/missives.css');
+
+/* Styles for the Books section */
 @import url('styles/books.css');
+
+/* Contact page styles */
 @import url('styles/contact.css');
+
+/* Testimonials section styles */
 @import url('styles/testimonials.css');
+
+/* About page styles */
 @import url('styles/about.css');
+
+/* Artwork page styles */
+@import url('styles/artwork.css');

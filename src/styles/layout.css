@@ -1,51 +1,61 @@
-/* Header */
+/* Header styles */
 header {
-  background-color: #f9f9f9;
-  padding: 1rem;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
+  background-color: #f9f9f9; /* Light background for header */
+  padding: 1rem; /* Space inside header */
+  border-bottom: 1px solid #e0e0e0; /* Subtle bottom border */
+  text-align: center; /* Center header content */
 }
 
 header h1 {
-  font-size: 2rem;
-  margin: 0.2rem 0;
+  font-size: 2rem; /* Large site title */
+  margin: 0.2rem 0; /* Small vertical margin */
 }
 
+/* Navigation link styles */
 nav a {
-  color: #333;
-  text-decoration: none;
-  margin: 0 0.75rem;
-  font-weight: 500;
+  color: #333; /* Dark text color */
+  text-decoration: none; /* Remove underline */
+  margin: 0 0.75rem; /* Space between links */
+  font-weight: 500; /* Medium font weight */
 }
 
 nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Underline on hover */
 }
 
-/* Footer */
+/* Footer styles */
 footer {
-  background-color: #f9f9f9;
-  color: #666666;
-  text-align: center;
-  padding: 1rem;
-  border-top: 1px solid #e0e0e0;
-  margin-top: 2rem;
+  background-color: #f9f9f9; /* Light background for footer */
+  color: #666666; /* Muted text color */
+  text-align: center; /* Center footer content */
+  padding: 1rem; /* Space inside footer */
+  border-top: 1px solid #e0e0e0; /* Subtle top border */
+  margin-top: 2rem; /* Space above footer */
 }
 
+/* Site-wide footer styles */
 .site-footer {
-  background-color: #000000;
-  color: #ffffff;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  border-top: 1px solid #e0e0e0;
+  background-color: #000000; /* Dark background */
+  color: #ffffff; /* White text */
+  text-align: center; /* Center content */
+  padding: 1.5rem 1rem; /* Padding for footer */
+  border-top: 1px solid #e0e0e0; /* Subtle top border */
 }
 
+/* Footer text container */
 .site-footer-text {
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* Footer text */
+.site-footer-text p {
+  font-size: 0.95rem;
+  color: #cccccc;
+}
+
+/* Main content area */
 .site-content {
   flex: 1;
   max-width: 1000px;
@@ -53,12 +63,14 @@ footer {
   margin: auto;
 }
 
+/* Wrapper for the entire site to enable sticky footer */
 .site-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Container for tiles (sections/cards) */
 .tile-container {
   display: flex;
   flex-direction: column;
@@ -67,6 +79,7 @@ footer {
   align-items: center;
 }
 
+/* Individual tile/card styles */
 .tile {
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -76,6 +89,7 @@ footer {
   max-width: 1000px;
 }
 
+/* Main tag styles */
 main {
   padding: 2rem;
   margin: auto;

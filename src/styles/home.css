@@ -1,4 +1,6 @@
 /* Homepage-specific styles */
+
+/* Hero section with background image and centered content */
 .hero {
   position: relative;
   width: 100%;
@@ -14,17 +16,20 @@
   padding: 0;
 }
 
+/* Main container for the home page */
 .home-page {
   margin: auto;
   text-align: center;
   max-width: 1000px;
 }
 
+/* Paragraph styles for home page */
 .home-page p {
   font-size: 1.2rem;
   line-height: 1.8;
 }
 
+/* Section container for grouping home page sections */
 .home-sections {
   display: flex;
   flex-direction: row;
@@ -33,6 +38,7 @@
   flex-wrap: wrap;
 }
 
+/* Banner section at the bottom of the home page */
 .home-banner {
   background-color: #000000;
   color: #a4a4a4;
@@ -42,17 +48,20 @@
   border-top: 1px solid #ccc;
 }
 
+/* Banner links */
 .home-banner a {
   color: #1e90ff;
   text-decoration: underline;
 }
 
+/* Wrapper for images on the home page */
 .home-image-wrapper {
   width: 100%;
   justify-content: center;
   overflow: hidden;
 }
 
+/* Home page images */
 .home-image-wrapper img {
   width: 340px;
   height: 443px;
@@ -60,16 +69,19 @@
   border-radius: 8px;
 }
 
+/* Right section of the home page layout */
 .home-right {
   flex: 2 1 310px;
   justify-content: center;
 }
 
+/* Left section of the home page layout */
 .home-left {
   flex: 1 1 400px;
   justify-content: left;
 }
 
+/* Container for home page tiles */
 .home-tile-container {
   display: flex;
   flex-wrap: wrap;
@@ -78,6 +90,7 @@
   gap: 2rem;
 }
 
+/* Individual tile on the home page */
 .home-tile {
   background-color: #f5f5f5;
   display: flex;
@@ -89,10 +102,12 @@
   max-width: 1000px;
 }
 
+/* Left content inside a home tile */
 .home-left-content p {
   text-align: left;
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .home-tile-container {
     flex-direction: column;

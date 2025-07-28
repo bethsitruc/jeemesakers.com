@@ -1,45 +1,53 @@
-/* Book section */
+/* Styles for the Books section */
+
+/* Main container for the books section */
 .book-section {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  flex-direction: column; /* Stack book tiles vertically */
+  gap: 2rem; /* Space between book tiles */
 }
 
+/* Styling for book quotes */
 .book-quote {
-  padding-left: 2em;
+  padding-left: 2em; /* Indent quotes */
 }
 
+/* Book tile container styles */
 .book-section .book-tile {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
   align-items: flex-start;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  gap: 2rem;
-  max-width: 1000px;
+  background-color: #f5f5f5; /* Light background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 2rem; /* Inner spacing */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  gap: 2rem; /* Space between info and description */
+  max-width: 1000px; /* Limit tile width */
 }
 
+/* Book info section (cover image, etc.) */
 .book-tile__info {
-  flex: 1 1 310px;
-  text-align: center;
+  flex: 1 1 310px; /* Flexible width, min 310px */
+  text-align: center; /* Center content */
 }
 
+/* Book cover image styles */
 .book-tile__info img {
   width: 310px;
   height: 477px;
 }
 
+/* Book description section */
 .book-tile__description {
-  flex: 2 1 400px;
-  text-align: left;
+  flex: 2 1 400px; /* Flexible width, min 400px */
+  text-align: left; /* Left-align text */
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .book-section .book-tile {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;    /* Center items */
   }
 
   .book-tile__description {
@@ -47,10 +55,12 @@
   }
 }
 
+/* Individual book container */
 .book {
   text-align: center;
 }
 
+/* Book image styles for individual book */
 .book img {
   width: 100%;
   max-width: 300px;
@@ -59,15 +69,17 @@
   border-radius: 8px;
 }
 
+/* Book title styles */
 .book h3 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
+/* Book description paragraph styles */
 .book p {
   font-size: 1rem;
   line-height: 1.75;
   color: #444;
   text-align: left;
-  white-space: pre-line;
+  white-space: pre-line; /* Preserve line breaks */
 }

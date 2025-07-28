@@ -1,6 +1,8 @@
 import React from 'react';
 
+// Testimonials component displays a list of reader reviews
 export default function Testimonials() {
+  // Array of review objects, each with name, date, title, and review text
   const reviews = [
     {
       name: 'Carl Sode',
@@ -39,6 +41,7 @@ Prawnocus Resplendent is a fantastic book I highly recommend reading it.`
   return (
     <section className="testimonial-page">
       <h1>Reader Testimonials</h1>
+      {/* Render each review as a testimonial tile */}
       {reviews.map((r, index) => (
         <div className="testimonial-tile" key={index}>
           <h3>{r.title}</h3>

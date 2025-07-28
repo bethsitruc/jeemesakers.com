@@ -1,4 +1,6 @@
 /* Missive tiles and pagination */
+
+/* Styles for individual missive tiles */
 .missive .missive-tile {
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -11,16 +13,19 @@
   color: #333;
 }
 
+/* Missive tile heading */
 .missive .missive-tile h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
+/* Missive tile paragraph */
 .missive .missive-tile p {
   margin-bottom: 1.5rem;
   color: #666;
 }
 
+/* Blockquote styles inside missive tiles */
 .missive .missive-tile blockquote {
   margin: 1rem 0;
   padding: 0.75rem 1.25rem;
@@ -31,6 +36,7 @@
   box-sizing: border-box;
 }
 
+/* Pagination container styles */
 .pagination {
   display: flex;
   justify-content: center;
@@ -39,28 +45,33 @@
   padding: 1rem 0;
 }
 
+/* Pagination link styles */
 .page a {
   text-decoration: none;
   padding: 0.5rem;
   cursor: pointer;
 }
 
+/* Active page link styles */
 .active a {
   text-decoration: underline;
   font-weight: bold;
 }
 
+/* Previous/Next pagination link styles */
 .pagination .previous a,
 .pagination .next a {
   cursor: pointer;
 }
 
+/* Missive list container */
 .missive-list {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* Missive list tile image styles */
 .missive-list-tile img {
   width: 100%;
   max-width: 300px;
@@ -68,6 +79,7 @@
   border-radius: 8px;
 }
 
+/* Missive list tile styles */
 .missive-list .missive-list-tile {
   background-color: #f5f5f5;
   padding: 1.5rem;
@@ -83,39 +95,47 @@
   align-items: center;
 }
 
+/* Missive list tile hover effect */
 .missive-list .missive-list-tile:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Missive list tile heading */
 .missive-list .missive-list-tile h3 {
   margin: 0 0 0.5rem;
   font-size: 1.4rem;
 }
 
+/* Missive list tile paragraph */
 .missive-list .missive-list-tile p {
   margin: 0;
   color: #777;
 }
 
+/* Content area inside missive list tile */
 .missive-list-content {
   flex: 1;
 }
 
+/* Header section for missive tile */
 .missive-tile-header {
   align-items: center;
 }
 
+/* Image container for missive tile */
 .missive-tile-image {
   display: flex;
   justify-content: center;
 }
 
+/* Image styles for missive tile */
 .missive-tile-image img {
   max-width: 500px;
   height: auto;
   border-radius: 8px;
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .missive-tile-header {
     flex-direction: column;
@@ -132,6 +152,7 @@
   }
 }
 
+/* Epigraph (quote) styles */
 .epigraph {
   font-style: italic;
   text-align: left;
@@ -144,10 +165,12 @@
   line-height: 1.6;
 }
 
+/* Paragraphs inside epigraph */
 .epigraph p {
   margin: 0.5em 0;
 }
 
+/* Epigraph author styles */
 .epigraph-author {
   font-style: normal;
   text-align: right;
@@ -156,6 +179,7 @@
   margin-top: 0.25rem;
 }
 
+/* References section styles */
 .references {
   margin-top: 3rem;
   padding-top: 1rem;
@@ -165,12 +189,14 @@
   line-height: 1.5;
 }
 
+/* References heading */
 .references h4 {
   margin-bottom: 0.5rem;
   font-size: 1rem;
   font-weight: bold;
 }
 
+/* References paragraph styles */
 .references p {
   font-size: 1.0rem;
   margin: 0.25rem 0;

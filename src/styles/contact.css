@@ -1,4 +1,6 @@
-/* Contact form */
+/* Styles for the Contact page and form */
+
+/* Main section container for the contact page */
 .contact-section {
   padding: 2rem;
   text-align: center;
@@ -6,18 +8,21 @@
   margin: auto;
 }
 
+/* Heading styles for the contact section */
 .contact-section h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
+/* Contact form container */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5rem; /* Space between form fields */
   text-align: left;
 }
 
+/* Label styles for form fields */
 .contact-form label {
   font-weight: bold;
   display: flex;
@@ -25,6 +30,7 @@
   font-size: 1rem;
 }
 
+/* Input and textarea styles */
 .contact-form input,
 .contact-form textarea {
   padding: 0.75rem;
@@ -35,6 +41,7 @@
   margin-top: 0.5rem;
 }
 
+/* Submit button styles */
 .contact-form button {
   background-color: #000;
   color: #fff;
@@ -46,6 +53,7 @@
   align-self: center;
 }
 
+/* Button hover effect */
 .contact-form button:hover {
   background-color: #333;
 }

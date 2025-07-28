@@ -3,6 +3,7 @@ import book1 from '../assets/book1.jpg';
 import book2 from '../assets/book2.jpg';
 import book3 from '../assets/book3.jpg';
 
+// Books component displays information about the Prawnocuos Trilogy
 export default function Books() {
   return (
     <section className="books-page">
