@@ -12,8 +12,8 @@ import Artwork from './components/Artwork';
 // Main App component that sets up routing for the site
 export default function App() {
   return (
-    // Set up React Router for client-side navigation with GitHub Pages basename
-    <Router basename="/jeemesakers.com">
+    // Set up React Router for client-side navigation with custom domain
+    <Router basename="/">
       {/* Layout component wraps all pages (e.g., header, footer, nav) */}
       <Layout>
         <Routes>
