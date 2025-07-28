@@ -47,6 +47,6 @@
   "devDependencies": {
     "@mdx-js/rollup": "^2.3.0",
     "@vitejs/plugin-react": "^4.4.1",
-    "vite": "^5.4.19"
+    "vite": "^7.0.6"
   }
 }
