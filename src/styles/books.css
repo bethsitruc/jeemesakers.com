@@ -33,8 +33,9 @@
 
 /* Book cover image styles */
 .book-tile__info img {
-  width: 310px;
-  height: 477px;
+  width: 100%;
+  max-width: 310px;
+  height: auto;
 }
 
 /* Book description section */

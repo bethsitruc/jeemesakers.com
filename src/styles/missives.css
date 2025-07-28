@@ -148,7 +148,17 @@
 
   .missive-tile-image img {
     max-width: 100%;
-    height: auto;
+  }
+
+  /* Stack missive list items vertically on mobile */
+  .missive-list .missive-list-tile {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .missive-list-tile img {
+    max-width: 250px;
+    margin-bottom: 1rem;
   }
 }
 

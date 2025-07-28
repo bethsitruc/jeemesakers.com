@@ -18,13 +18,15 @@
 }
 
 .about-left img {
-  width: 423px; /* Fixed image width */
-  height: 564px; /* Fixed image height */
+  width: 100%; /* Make responsive */
+  max-width: 423px; /* Keep original max size */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .about-right img {
-  width: 328px; /* Fixed width for images in right section */
-  height: 174px; /* Fixed height for images in right section */
+  width: 100%; /* Make responsive */
+  max-width: 328px; /* Keep original max size */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .about-right {
