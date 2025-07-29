@@ -15,5 +15,25 @@ export default defineConfig({
   server: {
     port: 3000,        // Dev server will try to use port 3000
     strictPort: true,  // If port 3000 is taken, Vite will fail instead of picking another port
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor libraries into separate chunks
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          mdx: ['@mdx-js/react'],
+          email: ['@emailjs/browser'],
+        }
+      }
+    },
+    // Enable compression
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.logs in production
+        drop_debugger: true,
+      }
+    }
   }
 });
