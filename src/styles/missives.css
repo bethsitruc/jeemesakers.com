@@ -135,6 +135,33 @@
   border-radius: 8px;
 }
 
+/* Epigraph (quote) styles */
+.epigraph {
+  font-style: italic;
+  text-align: left;
+  margin: 2rem 3rem;
+  max-width: 90%;
+  padding: 2rem;
+  border-bottom: 3px solid #ccc;
+  border-top: 3px solid #ccc;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+/* Paragraphs inside epigraph */
+.epigraph p {
+  margin: 0.5em 0;
+}
+
+/* Epigraph author styles */
+.epigraph-author {
+  font-style: normal;
+  text-align: right;
+  color: #333333;
+  font-size: 0.95em;
+  margin-top: 0.25rem;
+}
+
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .missive-tile-header {
@@ -178,7 +205,7 @@
 
   /* Make epigraph mobile-friendly */
   .epigraph {
-    margin: 1rem 0; /* Remove side margins on mobile */
+    margin: 0; /* Remove side margins on mobile */
     padding: 1rem; /* Reduce padding */
     text-align: left; /* Keep left-aligned for readability */
     max-width: 100%;
@@ -219,33 +246,6 @@
     font-size: 1rem;
     line-height: 1.6;
   }
-}
-
-/* Epigraph (quote) styles */
-.epigraph {
-  font-style: italic;
-  text-align: left;
-  margin: 2rem 3rem;
-  max-width: 90%;
-  padding: 2rem;
-  border-bottom: 3px solid #ccc;
-  border-top: 3px solid #ccc;
-  opacity: 0.95;
-  line-height: 1.6;
-}
-
-/* Paragraphs inside epigraph */
-.epigraph p {
-  margin: 0.5em 0;
-}
-
-/* Epigraph author styles */
-.epigraph-author {
-  font-style: normal;
-  text-align: right;
-  color: #333333;
-  font-size: 0.95em;
-  margin-top: 0.25rem;
 }
 
 /* References section styles */

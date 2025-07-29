@@ -62,12 +62,6 @@
   display: block;
 }
 
-.artwork-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
 .art-overlay {
   position: absolute;
   top: 0;
@@ -127,7 +121,7 @@
   outline-offset: 2px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .section-title {
     font-size: 1.5rem;
   }
