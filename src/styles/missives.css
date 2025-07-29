@@ -160,6 +160,43 @@
     max-width: 250px;
     margin-bottom: 1rem;
   }
+
+  /* Mobile-specific improvements for missive content */
+  .missive .missive-tile {
+    padding: 1rem; /* Reduce padding on mobile */
+  }
+
+  /* Fix long words breaking layout */
+  .missive .missive-tile h1,
+  .missive .missive-tile h2,
+  .missive .missive-tile h3,
+  .missive .missive-tile p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Make epigraph mobile-friendly */
+  .epigraph {
+    margin: 1rem 0; /* Remove side margins on mobile */
+    padding: 1rem; /* Reduce padding */
+    text-align: left; /* Keep left-aligned for readability */
+    max-width: 100%;
+  }
+
+  /* Make footnotes mobile-friendly */
+  .references {
+    text-align: left; /* Left-align references on mobile */
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+
+  /* Improve overall text readability on mobile */
+  .missive .missive-tile p {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }
 
 /* Epigraph (quote) styles */
