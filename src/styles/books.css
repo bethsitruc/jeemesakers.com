@@ -44,18 +44,6 @@
   text-align: left; /* Left-align text */
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-  .book-section .book-tile {
-    flex-direction: column; /* Stack vertically */
-    align-items: center;    /* Center items */
-  }
-
-  .book-tile__description {
-    text-align: left;
-  }
-}
-
 /* Individual book container */
 .book {
   text-align: center;
@@ -83,4 +71,16 @@
   color: #444;
   text-align: left;
   white-space: pre-line; /* Preserve line breaks */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .book-section .book-tile {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;    /* Center items */
+  }
+
+  .book-tile__description {
+    text-align: left;
+  }
 }

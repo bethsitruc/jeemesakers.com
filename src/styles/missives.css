@@ -136,7 +136,7 @@
 }
 
 /* Epigraph (quote) styles */
-.epigraph {
+.missive .missive-tile .epigraph {
   font-style: italic;
   text-align: left;
   margin: 2rem 3rem;
@@ -148,18 +148,36 @@
   line-height: 1.6;
 }
 
-/* Paragraphs inside epigraph */
-.epigraph p {
-  margin: 0.5em 0;
-}
-
 /* Epigraph author styles */
-.epigraph-author {
+.missive .missive-tile .epigraph-author p {
   font-style: normal;
   text-align: right;
-  color: #333333;
   font-size: 0.95em;
   margin-top: 0.25rem;
+}
+
+/* References section styles */
+.references {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* References heading */
+.references h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* References paragraph styles */
+.references p {
+  font-size: 1.0rem;
+  margin: 0.25rem 0;
+  font-style: italic;
 }
 
 /* Responsive styles for smaller screens */
@@ -193,6 +211,13 @@
     padding: 1rem; /* Reduce padding on mobile */
   }
 
+  /* Reduce title size on mobile for better readability */
+  .missive .missive-tile h1,
+  .missive .missive-tile h2 {
+    font-size: 1.5rem; /* Smaller than desktop 2rem */
+    line-height: 1.3; /* Tighter line height for mobile */
+  }
+
   /* Fix long words breaking layout */
   .missive .missive-tile h1,
   .missive .missive-tile h2,
@@ -200,37 +225,24 @@
   .missive .missive-tile p {
     word-break: break-word;
     overflow-wrap: break-word;
-    hyphens: auto;
+    hyphens: manual; /* Only hyphenate where explicitly marked with &shy; */
   }
 
   /* Make epigraph mobile-friendly */
-  .epigraph {
-    margin: 0; /* Remove side margins on mobile */
+  .missive .missive-tile .epigraph {
+    margin: 1.5rem 0; /* More vertical space, remove side margins on mobile */
     padding: 1rem; /* Reduce padding */
     text-align: left; /* Keep left-aligned for readability */
     max-width: 100%;
+    border-top: 2px solid #ccc; /* Thinner borders */
+    border-bottom: 2px solid #ccc;
   }
 
   /* Fix epigraph author alignment on mobile */
-  .epigraph .epigraph-author {
-    text-align: left !important; /* Override desktop right-alignment */
+  .missive .missive-tile .epigraph .epigraph-author p {
     margin-top: 0.5rem;
     margin-bottom: 1.5rem; /* Add space between quotes */
     font-size: 0.9rem;
-    padding-left: 1rem; /* Slight indent to show it's an attribution */
-  }
-
-  /* Improve spacing between multiple quotes in epigraph */
-  .epigraph p {
-    margin-bottom: 0.75rem;
-    line-height: 1.5;
-  }
-
-  /* Reduce borders on mobile for cleaner look */
-  .epigraph {
-    border-top: 2px solid #ccc; /* Thinner borders */
-    border-bottom: 2px solid #ccc;
-    margin: 1.5rem 0; /* More vertical space */
   }
 
   /* Make footnotes mobile-friendly */
@@ -246,28 +258,4 @@
     font-size: 1rem;
     line-height: 1.6;
   }
-}
-
-/* References section styles */
-.references {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ccc;
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.5;
-}
-
-/* References heading */
-.references h4 {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-/* References paragraph styles */
-.references p {
-  font-size: 1.0rem;
-  margin: 0.25rem 0;
-  font-style: italic;
 }

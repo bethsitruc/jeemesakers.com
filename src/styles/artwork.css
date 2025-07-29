@@ -121,13 +121,62 @@
   outline-offset: 2px;
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
+  .artwork-page {
+    padding: 1rem; /* Reduce page padding on mobile */
+  }
+  
   .section-title {
     font-size: 1.5rem;
+    text-align: center; /* Center titles on mobile */
+  }
+  
+  .artwork-intro {
+    margin: 0 0 2rem 0; /* Remove side margins */
+    padding: 1.5rem; /* Reduce padding */
+    text-align: center; /* Keep centered */
+  }
+  
+  .artwork-grid {
+    display: flex; /* Change from grid to flex for better zoom behavior */
+    flex-direction: column; /* Stack tiles vertically */
+    align-items: center; /* Center tiles horizontally */
+    gap: 1.5rem; /* Slightly less gap on mobile */
+    padding: 0; /* Remove any inherited padding */
+  }
+  
+  .artwork-tile {
+    margin: 0; /* Remove auto margins that can cause shifting */
+    padding: 1rem; /* Reduce padding on mobile */
+    text-align: center; /* Center all content */
+    width: 100%; /* Take full width of container */
+    max-width: 350px; /* But don't exceed this size */
+    min-width: 0; /* Allow shrinking when zoomed */
+  }
+  
+  .art-container {
+    margin: 0 auto; /* Center image container */
+    max-width: 100%; /* Ensure it doesn't overflow */
+  }
+  
+  .artwork-tile h3 {
+    text-align: center; /* Center tile titles */
+  }
+  
+  .artwork-tile p {
+    text-align: center; /* Center descriptions when expanded */
+  }
+  
+  .read-more-link {
+    display: block; /* Make link block-level */
+    text-align: center; /* Center the link */
+    margin: 1rem auto 0; /* Center with top margin */
   }
 }
 
-@media (min-width: 768px) {
+/* Desktop styles for larger screens */
+@media (min-width: 769px) {
   .artwork-tile.expanded {
     flex-direction: row;
     align-items: flex-start;

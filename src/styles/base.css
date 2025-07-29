@@ -18,10 +18,14 @@ body, p, li, a, span, input, textarea, button {
   font-size: 1.1rem;
 }
 
-/* Universal box-sizing and width reset */
-* {
+/* Universal box-sizing reset */
+*, *::before, *::after {
   box-sizing: border-box; /* Include padding and border in element's total width/height */
-  width: 100%; /* Make all elements take full width by default */
+}
+
+/* Block-level elements should take full width by default */
+div, section, article, main, header, footer, nav, aside {
+  width: 100%;
 }
 
 /* Heading styles: use Merriweather font */
@@ -39,4 +43,33 @@ h1, h2, h3, h4, h5, h6 {
 .testimonial-page h1 {
   font-size: 2rem;
   text-align: center;
+}
+
+/* Accessibility: Global support for users with large text settings */
+@media (prefers-reduced-motion: reduce) {
+  /* Respect user's motion preferences */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Targeted text overflow protection (not universal) */
+p, h1, h2, h3, h4, h5, h6, span, div {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Make all images responsive by default for accessibility */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Focus indicators for keyboard navigation accessibility */
+*:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: 2px;
 }
