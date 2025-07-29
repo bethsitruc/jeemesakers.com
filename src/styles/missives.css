@@ -184,6 +184,28 @@
     max-width: 100%;
   }
 
+  /* Fix epigraph author alignment on mobile */
+  .epigraph .epigraph-author {
+    text-align: left !important; /* Override desktop right-alignment */
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem; /* Add space between quotes */
+    font-size: 0.9rem;
+    padding-left: 1rem; /* Slight indent to show it's an attribution */
+  }
+
+  /* Improve spacing between multiple quotes in epigraph */
+  .epigraph p {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  /* Reduce borders on mobile for cleaner look */
+  .epigraph {
+    border-top: 2px solid #ccc; /* Thinner borders */
+    border-bottom: 2px solid #ccc;
+    margin: 1.5rem 0; /* More vertical space */
+  }
+
   /* Make footnotes mobile-friendly */
   .references {
     text-align: left; /* Left-align references on mobile */
