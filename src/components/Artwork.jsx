@@ -264,17 +264,24 @@ const artworkSections = [
       {
         title: 'Left-Handed Redheads',
         subtitle: 'pen and ink',
-        image: '/artwork/appalachian_heritage/left_handed_redheads.png', // TODO
+        image: '/artwork/appalachian_heritage/left_handed_redheads.png', 
         description:
           'Illustration for article “Left-Handed Redheads,” Appalachian Heritage, Summer 1984; creative',
       },
       {
         title: 'The Fruit of Care',
         subtitle: 'pen and ink',
-        image: '/artwork/appalachian_heritage/fruit_of_care_graveyard.png', // TODO
+        image: '/artwork/appalachian_heritage/fruit_of_care_graveyard.png', 
         description:
           'Illustration for article “The Fruit of Care,” Mantrip, Fall 1986; creative',
       },
+	  {
+		title: 'There is a Season',
+		subtitle: 'pen and ink',
+		image: '/artwork/appalachian_heritage/there_is_a_season.png', 
+		description:
+		  'Illustration for article “There is a Season,”, Fall 1986; creative',
+	  },
 		],
 	},
 	// Add more sections as needed
