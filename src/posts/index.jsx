@@ -33,6 +33,7 @@ import Postmortem from './2023-06-28-russias-wagner-group-abortive-coup-or-sleig
 import RevisitingTheCinemaOfGrandIllusions from './2025-05-28-revisiting-the-cinema-of-grand-illusions.mdx';
 import ThoughtsOnJulyFourth from './2025-07-04-thoughts-on-july-4.mdx';
 import Superintel from './2025-07-26-superintel.mdx';
+import Immortality from './2025-09-11-hot-mic-immortality.mdx'
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -57,6 +58,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+  {
+    slug: '2025-09-11-hot-mic-immortality',
+    component: Immortality,
+    metadata: {
+      title: '"Hot Mic" Immortality',
+      date: formatDate('2025-09-11'),
+      image: '/images/missives/hot-mic-immortality.png',
+    },
+  },
   {
     slug: '2025-07-26-superintel',
     component: Superintel,
