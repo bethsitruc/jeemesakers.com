@@ -34,6 +34,7 @@ import RevisitingTheCinemaOfGrandIllusions from './2025-05-28-revisiting-the-cin
 import ThoughtsOnJulyFourth from './2025-07-04-thoughts-on-july-4.mdx';
 import Superintel from './2025-07-26-superintel.mdx';
 import Immortality from './2025-09-11-hot-mic-immortality.mdx'
+import CharlieKirkAssassination from './2025-09-16-charlie-kirk-assassination.mdx'
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -58,6 +59,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+  {
+    slug: '2025-09-16-charlie-kirk-assassination',
+    component: CharlieKirkAssassination,
+    metadata: {
+      title: 'The Charlie Kirk Assassination',
+      date: formatDate('2025-09-16'),
+      image: '/images/missives/charlie-kirk.png',
+    },
+  },
   {
     slug: '2025-09-11-hot-mic-immortality',
     component: Immortality,
