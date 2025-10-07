@@ -35,6 +35,7 @@ import ThoughtsOnJulyFourth from './2025-07-04-thoughts-on-july-4.mdx';
 import Superintel from './2025-07-26-superintel.mdx';
 import Immortality from './2025-09-11-hot-mic-immortality.mdx'
 import CharlieKirkAssassination from './2025-09-16-charlie-kirk-assassination.mdx'
+import TheEnd from './2025-10-03-are-we-approaching-the-end.mdx'
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -59,6 +60,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+  {
+    slug: '2025-10-03-are-we-approaching-the-end',
+    component: TheEnd,
+    metadata: {
+      title: 'Are We Approaching The End?',
+      date: formatDate('2025-10-03'),
+      image: '/images/missives/theEnd.png',
+    }
+  },
   {
     slug: '2025-09-16-charlie-kirk-assassination',
     component: CharlieKirkAssassination,
