@@ -37,7 +37,8 @@ import Immortality from './2025-09-11-hot-mic-immortality.mdx'
 import CharlieKirkAssassination from './2025-09-16-charlie-kirk-assassination.mdx'
 import TheEnd from './2025-10-03-are-we-approaching-the-end.mdx'
 import NewAIStrategicWorld from './2025-12-02-the-new-ai-strategic-world-the-middle-easts-strange-bedfellows.mdx'
-import TheFinalGeneration from './2025-12-05-are-we-witnessing-the-final-generation.mdx'
+import TheFinalGeneration from './2025-12-05-are-we-witnessing-the-final-generation.mdx';
+import LifeAndOneLifetime from './2025-12-16-life-and-one-lifetime.mdx';
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -62,6 +63,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+    {
+      slug: '2025-12-16-life-and-one-lifetime',
+      component: LifeAndOneLifetime,
+      metadata: {
+        title: 'Life and One Lifetime',
+        date: formatDate('2025-12-16'),
+        image: '/images/missives/one-lifetime.png',
+      }
+    },
     {
       slug: '2025-12-05-are-we-witnessing-the-final-generation',
       component: TheFinalGeneration,
