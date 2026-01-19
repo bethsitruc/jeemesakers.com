@@ -40,6 +40,7 @@ import NewAIStrategicWorld from './2025-12-02-the-new-ai-strategic-world-the-mid
 import TheFinalGeneration from './2025-12-05-are-we-witnessing-the-final-generation.mdx';
 import LifeAndOneLifetime from './2025-12-16-life-and-one-lifetime.mdx';
 import LivingLikeAKingsKid from './2026-01-08-2026-resolution-living-like-a-kings-kid.mdx';
+import SingaporeWashing from './2026-01-14-2026-new-paradigms-singapore-washing.mdx';
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -64,6 +65,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+  {
+      slug: '2026-01-14-2026-new-paradigms-singapore-washing',
+      component: SingaporeWashing,
+      metadata: {
+        title: '2026 New Paradigms: Singapore Washing',
+        date: formatDate('2026-01-14'),
+        image: '/images/missives/singapore-washing.png',
+      }
+  },
   {
       slug: '2026-01-08-2026-resolution-living-like-a-kings-kid',
       component: LivingLikeAKingsKid,
