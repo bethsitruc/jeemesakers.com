@@ -1,28 +1,31 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 // Contact component renders a contact form and handles email sending via EmailJS
 function Contact() {
-  const form = useRef(); // Reference to the form element
+  const form = useRef();
+  const [status, setStatus] = useState('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
-  // Function to handle form submission and send email using EmailJS
-  const sendEmail = (e) => {
-    e.preventDefault(); // Prevent default form submission
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    setStatusMessage('Sending your message...');
 
-    // Send the form data using EmailJS service and template IDs
-    emailjs.sendForm(
-      'service_c5m4kt6',        // EmailJS service ID
-      'template_ki6hgki',       // EmailJS template ID
-      form.current,             // Reference to the form DOM node
-      '8TgJToP4JlPgIlFpK'       // EmailJS public key
-    ).then(
-      (result) => {
-        alert("Message sent!"); // Show success message
-      },
-      (error) => {
-        alert("Failed to send message."); // Show error message
-      }
-    );
+    try {
+      await emailjs.sendForm(
+        'service_c5m4kt6',
+        'template_ki6hgki',
+        form.current,
+        '8TgJToP4JlPgIlFpK'
+      );
+      form.current.reset();
+      setStatus('success');
+      setStatusMessage('Message sent.');
+    } catch (error) {
+      setStatus('error');
+      setStatusMessage('Failed to send message. Please try again.');
+    }
   };
 
   return (
@@ -35,23 +38,24 @@ function Contact() {
           feel free to send a note using the form below. Whether you’re a friend, family member, or a curious reader,
           I’d love to hear from you.
         </p>
-        {/* Name input */}
+        <p className={`contact-status contact-status--${status}`} aria-live="polite">
+          {statusMessage}
+        </p>
         <label>
           Name
           <input type="text" name="name" required />
         </label>
-        {/* Email input */}
         <label>
           Email
           <input type="email" name="email" required />
         </label>
-        {/* Message textarea */}
         <label>
           Message
           <textarea name="message" rows="5" required></textarea>
         </label>
-        {/* Submit button */}
-        <button type="submit">Send Message</button>
+        <button type="submit" disabled={status === 'sending'}>
+          {status === 'sending' ? 'Sending...' : 'Send Message'}
+        </button>
       </form>
     </section>
   );

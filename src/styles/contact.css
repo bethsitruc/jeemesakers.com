@@ -22,6 +22,24 @@
   text-align: left;
 }
 
+.contact-status {
+  min-height: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.contact-status--idle {
+  visibility: hidden;
+}
+
+.contact-status--success {
+  color: #1d6f42;
+}
+
+.contact-status--error {
+  color: #8b1e1e;
+}
+
 /* Label styles for form fields */
 .contact-form label {
   font-weight: bold;
@@ -56,4 +74,9 @@
 /* Button hover effect */
 .contact-form button:hover {
   background-color: #333;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }

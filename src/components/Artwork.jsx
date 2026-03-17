@@ -306,16 +306,19 @@ const ArtworkPage = () => {
 			</p>
 
 			{artworkSections.map((section, i) => {
-				// Separate featured items from regular items
-				const featuredItems = section.items.filter(item => item.featured);
-				const regularItems = section.items.filter(item => !item.featured);
+				const itemsWithIndex = section.items.map((item, originalIndex) => ({
+					item,
+					originalIndex,
+				}));
+				const featuredItems = itemsWithIndex.filter(({ item }) => item.featured);
+				const regularItems = itemsWithIndex.filter(({ item }) => !item.featured);
 				
 				return (
 					<div key={i} className="artwork-section">
 						<h2 className="section-title">{section.section}</h2>
 						
 						{/* Render featured items */}
-						{featuredItems.map((item, index) => (
+						{featuredItems.map(({ item }, index) => (
 							<div key={`featured-${index}`} className="featured-introduction">
 								<div className="featured-content">
 									<div className="featured-image">
@@ -336,22 +339,15 @@ const ArtworkPage = () => {
 						
 						{/* Render regular items */}
 						<div className="artwork-grid">
-							{regularItems.map((item, index) => {
-								// Use original index for state management
-								const originalIndex = section.items.indexOf(item);
-								
+							{regularItems.map(({ item, originalIndex }) => {
+								const tileKey = `${section.section}-${originalIndex}`;
+								const detailsId = `artwork-details-${i}-${originalIndex}`;
+								const isExpanded = !!expandedTiles[tileKey];
+
 								return (
 									<div
 										key={originalIndex}
-										className={`artwork-tile ${
-											expandedTiles[`${section.section}-${originalIndex}`] ? 'expanded' : ''
-										}`}
-										onClick={(e) => {
-											e.preventDefault();
-											e.stopPropagation();
-											toggleTile(`${section.section}-${originalIndex}`);
-										}}
-										style={{ cursor: 'pointer' }}
+										className={`artwork-tile ${isExpanded ? 'expanded' : ''}`}
 									>
 										<div className="tile-content">
 											<div className="art-container">
@@ -363,37 +359,24 @@ const ArtworkPage = () => {
 												{item.subtitle && (
 													<h4 className="artwork-subtitle">{item.subtitle}</h4>
 												)}
-												{expandedTiles[`${section.section}-${originalIndex}`] &&
-													item.description && (
-														<p
-															dangerouslySetInnerHTML={{
-																__html: item.description,
-															}}
-														/>
-													)}
+												{isExpanded && item.description && (
+													<p
+														id={detailsId}
+														dangerouslySetInnerHTML={{
+															__html: item.description,
+														}}
+													/>
+												)}
 												{item.description && (
-													<span
+													<button
+														type="button"
 														className="read-more-link"
-														tabIndex={0}
-														role="button"
-														onClick={(e) => {
-															e.preventDefault();
-															e.stopPropagation();
-															toggleTile(`${section.section}-${originalIndex}`);
-														}}
-														onKeyPress={(e) => {
-															if (e.key === 'Enter' || e.key === ' ') {
-																e.preventDefault();
-																e.stopPropagation();
-																toggleTile(`${section.section}-${originalIndex}`);
-															}
-														}}
-														aria-expanded={!!expandedTiles[`${section.section}-${originalIndex}`]}
+														onClick={() => toggleTile(tileKey)}
+														aria-controls={detailsId}
+														aria-expanded={isExpanded}
 													>
-														{expandedTiles[`${section.section}-${originalIndex}`]
-															? 'Read less'
-															: 'Read more'}
-													</span>
+														{isExpanded ? 'Read less' : 'Read more'}
+													</button>
 												)}
 											</div>
 										</div>

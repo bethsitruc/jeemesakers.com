@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { posts } from '../posts/index';
 
 // Component to display a paginated list of missives/posts
 function Writings() {
-  // Get and set the current page from the URL query parameter
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const postsPerPage = 10;
+  const rawPage = searchParams.get('page');
+  const parsedPage = Number.parseInt(rawPage ?? '1', 10);
 
-  // Calculate pagination details
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
+  const requestedPage = Number.isNaN(parsedPage) ? 1 : parsedPage;
+  const currentPage = Math.min(Math.max(requestedPage, 1), totalPages);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Handle page change event from ReactPaginate
+  useEffect(() => {
+    if (rawPage !== null && rawPage !== String(currentPage)) {
+      setSearchParams({ page: String(currentPage) }, { replace: true });
+    }
+  }, [currentPage, rawPage, setSearchParams]);
+
   const handlePageChange = ({ selected }) => {
-    setSearchParams({ page: selected + 1 });
+    setSearchParams({ page: String(selected + 1) });
   };
 
   return (
