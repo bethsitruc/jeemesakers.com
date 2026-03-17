@@ -25,13 +25,11 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "@mdx-js/mdx": "^2.3.0",
     "@mdx-js/react": "^3.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-paginate": "^8.3.0",
-    "react-router-dom": "^7.6.0",
-    "react-scripts": "^5.0.1"
+    "react-router-dom": "^7.6.0"
   },
   "browserslist": {
     "production": [
@@ -47,7 +45,8 @@
   },
   "devDependencies": {
     "@mdx-js/rollup": "^2.3.0",
-    "@vitejs/plugin-react": "^4.4.1",
-    "vite": "^5.4.21"
+    "@vitejs/plugin-react": "^6.0.1",
+    "terser": "^5.46.1",
+    "vite": "^8.0.0"
   }
 }

@@ -19,11 +19,29 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Split vendor libraries into separate chunks
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          mdx: ['@mdx-js/react'],
-          email: ['@emailjs/browser'],
+        manualChunks(id) {
+          // Keep the largest framework and integration packages in stable chunks.
+          if (!id.includes('node_modules')) {
+            return undefined;
+          }
+
+          if (id.includes('@emailjs/browser')) {
+            return 'email';
+          }
+
+          if (id.includes('@mdx-js/react')) {
+            return 'mdx';
+          }
+
+          if (
+            id.includes('/react/') ||
+            id.includes('/react-dom/') ||
+            id.includes('/react-router-dom/')
+          ) {
+            return 'vendor';
+          }
+
+          return undefined;
         }
       }
     },
