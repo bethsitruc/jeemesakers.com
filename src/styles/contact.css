@@ -48,6 +48,11 @@
   font-size: 1rem;
 }
 
+.contact-honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
 /* Input and textarea styles */
 .contact-form input,
 .contact-form textarea {
