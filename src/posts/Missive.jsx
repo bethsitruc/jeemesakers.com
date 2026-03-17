@@ -1,28 +1,53 @@
-import React, { useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
-import { posts } from './index';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getPostBySlug, loadPostComponent } from './index';
 
 // Component to display a single missive/post based on the URL slug
 function Missive() {
   // Get the slug parameter from the URL
   const { slug } = useParams();
-  // Get the current location object (for query params, etc.)
-  const location = useLocation();
-  // Get the page query parameter (default to "1" if not present)
-  const page = new URLSearchParams(location.search).get("page") || "1";
   // Find the post that matches the slug
-  const post = posts.find((p) => p.slug === slug);
+  const post = getPostBySlug(slug);
+  const [PostComponent, setPostComponent] = useState(null);
+  const [loadError, setLoadError] = useState(false);
 
   // Scroll to top when the slug changes (navigating to a new post)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!post) {
+      setPostComponent(null);
+      setLoadError(false);
+      return undefined;
+    }
+
+    setPostComponent(null);
+    setLoadError(false);
+
+    loadPostComponent(post)
+      .then((component) => {
+        if (!cancelled) {
+          setPostComponent(() => component);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setLoadError(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [post]);
+
   // If no post is found, show a not found message
   if (!post) return <div>Missive not found</div>;
 
-  // Get the React component and metadata for the post
-  const PostComponent = post.component;
   const { title, date } = post.metadata;
 
   return (
@@ -43,7 +68,7 @@ function Missive() {
             <img src={post.metadata.image} alt={title} />
         </div>
         {/* Render the post content (MDX or JSX) */}
-        <PostComponent />
+        {loadError ? <p>Unable to load this missive right now.</p> : PostComponent ? <PostComponent /> : <p>Loading missive...</p>}
       </div>
     </div>
   );

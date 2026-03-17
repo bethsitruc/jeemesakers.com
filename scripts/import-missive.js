@@ -483,25 +483,6 @@ function buildMdx({ epigraph, body, references }) {
   return sections.join('\n').replace(/\n{3,}/g, '\n\n');
 }
 
-function buildComponentName(stem, existingNames) {
-  const candidate = `post${stem}`
-    .replace(/[^a-zA-Z0-9]+/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
-
-  let name = candidate || 'postMissive';
-  let counter = 2;
-
-  while (existingNames.has(name)) {
-    name = `${candidate}${counter}`;
-    counter += 1;
-  }
-
-  return name;
-}
-
 function readPostBlocks(indexSource) {
   const marker = 'export const posts = [';
   const markerIndex = indexSource.indexOf(marker);
@@ -560,33 +541,22 @@ function readPostBlocks(indexSource) {
 }
 
 function insertPostIntoIndex(indexSource, post) {
-  const importMatches = [...indexSource.matchAll(/import\s+([A-Za-z0-9_]+)\s+from\s+'\.\/(.+?\.mdx)'\s*;?/g)];
-  const existingComponents = new Set(importMatches.map((match) => match[1]));
-  const existingFiles = new Set(importMatches.map((match) => match[2]));
+  const existingFiles = new Set([...indexSource.matchAll(/modulePath:\s+'\.\/(.+?\.mdx)'/g)].map((match) => match[1]));
 
   if (existingFiles.has(`${post.stem}.mdx`)) {
     throw new Error(`src/posts/${post.stem}.mdx is already registered in src/posts/index.jsx`);
   }
 
-  const componentName = buildComponentName(post.stem, existingComponents);
-  const importLine = `import ${componentName} from './${post.stem}.mdx';`;
-  const importAnchor = '// import other posts as needed';
-  const importAnchorIndex = indexSource.indexOf(importAnchor);
-
-  if (importAnchorIndex < 0) {
-    throw new Error('Could not find the import insertion point in src/posts/index.jsx');
-  }
-
-  let nextSource = indexSource.slice(0, importAnchorIndex) + `${importLine}\n` + indexSource.slice(importAnchorIndex);
+  let nextSource = indexSource;
   const postBlocks = readPostBlocks(nextSource);
 
   const newBlock = [
     '  {',
     `    slug: '${escapeSingleQuotes(post.stem)}',`,
-    `    component: ${componentName},`,
+    `    modulePath: './${escapeSingleQuotes(post.stem)}.mdx',`,
     '    metadata: {',
     `      title: '${escapeSingleQuotes(post.title)}',`,
-    `      date: formatDate('${post.date}'),`,
+      `      date: formatDate('${post.date}'),`,
     `      image: '${escapeSingleQuotes(post.image)}',`,
     '    },',
     '  },',
@@ -613,7 +583,6 @@ function insertPostIntoIndex(indexSource, post) {
 
   return {
     source: nextSource,
-    componentName,
     insertIndex,
   };
 }
@@ -883,7 +852,7 @@ async function main() {
       console.log(`Slug: ${stem}`);
       console.log(`Image: ${options.image}`);
       console.log(`Epigraph entries: ${parsed.entries.length}`);
-      console.log(`Registry component: ${updatedIndex.componentName}`);
+      console.log(`Registry position: ${updatedIndex.insertIndex + 1}`);
       printEpigraphPreview(epigraph);
 
       if (options.preview && !options.confirm) {
@@ -910,7 +879,7 @@ async function main() {
     console.log(`Slug: ${stem}`);
     console.log(`Image: ${options.image}`);
     console.log(`Epigraph entries: ${parsed.entries.length}`);
-    console.log(`Registry component: ${updatedIndex.componentName}`);
+    console.log(`Registry position: ${updatedIndex.insertIndex + 1}`);
   } finally {
     cleanupTempDir(tempDir);
   }
