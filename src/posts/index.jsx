@@ -42,6 +42,7 @@ import LifeAndOneLifetime from './2025-12-16-life-and-one-lifetime.mdx';
 import LivingLikeAKingsKid from './2026-01-08-2026-resolution-living-like-a-kings-kid.mdx';
 import SingaporeWashing from './2026-01-14-2026-new-paradigms-singapore-washing.mdx';
 import Neutrinos from './2026-01-23-neutrinos-thumbnails-and-ghost-riders-in-the-sky.mdx';
+import TheLossOfACloseFriend from './2026-03-17-the-loss-of-a-close-friend.mdx'
 // import other posts as needed
 
 // Helper function to format dates as "Month Day, Year"
@@ -66,6 +67,15 @@ export const posts = [
   //     image: '/images/missives/seashell.png',
   //   },
   // },
+  {
+    slug: '2026-03-17-the-loss-of-a-close-friend',
+    component: TheLossOfACloseFriend,
+    metadata: {
+      title: 'The Loss Of A Close Friend',
+      date: formatDate('2026-03-17'),
+      image: '/images/missives/the-loss-of-a-close-friend.png',
+    }
+  },
   {
     slug: '2026-01-23-neutrinos-thumbnails-and-ghost-riders-in-the-sky',
     component: Neutrinos,
