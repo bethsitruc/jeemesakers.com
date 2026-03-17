@@ -57,22 +57,33 @@ jeemesakers.com/
 
 ### Missives
 
-Each writing is stored as an individual `.md` file inside the `src/missives` directory. Metadata (like title and date) is included in frontmatter. These are parsed and rendered on the site with pagination and routing.
+Each writing is stored as an individual `.mdx` file inside `src/posts/`. The site still uses `src/posts/index.jsx` as the curated source of truth for the title, date, image, and slug shown in the missive list and on the post page.
 
-### Adding a New Missive
+### Importing a New Missive
 
-1. Create a new Markdown file in `src/missives/`
-2. Use the following frontmatter format:
+Use the local importer instead of creating the file and editing `src/posts/index.jsx` by hand:
 
-```markdown
----
-title: "The Title of the Missive"
-date: "2025-05-01"
----
-Content goes here...
+```bash
+npm run import:missive -- "/absolute/path/to/missive.docx" --date 2026-03-10
 ```
 
-3. The page will automatically render the new entry with correct styling and pagination.
+Helpful options:
+
+- `--date YYYY-MM-DD` sets the filename date and the date used in `src/posts/index.jsx`
+- `--title "Site Title"` overrides the title used for the site list and post page
+- `--slug some-slug` overrides the filename slug if needed
+- `--image /images/missives/custom-image.png` sets the list image path
+- `--preview` writes both an MDX preview and a simple HTML preview to `/tmp`
+- `--confirm` shows the same preview, then asks before writing files
+- `--dry-run` previews the import without writing files
+
+What the importer does:
+
+1. Converts the DOCX to MDX with pandoc
+2. Removes the internal document title from the post body
+3. Creates a new file in `src/posts/`
+4. Inserts the matching import and metadata entry into `src/posts/index.jsx`
+5. Uses `/images/missives/default-missive.svg` unless you pass `--image`
 
 ---
 
