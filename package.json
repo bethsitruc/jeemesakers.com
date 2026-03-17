@@ -9,9 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "import:missive": "node scripts/import-missive.js",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -32,7 +30,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-paginate": "^8.3.0",
-    "react-router-dom": "^7.6.0"
+    "react-router-dom": "^7.13.1"
   },
   "browserslist": {
     "production": [
