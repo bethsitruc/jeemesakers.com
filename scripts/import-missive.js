@@ -374,12 +374,29 @@ function renderInlineHtml(markdown) {
     .replace(/_(.+?)_/g, '<em>$1</em>');
 }
 
+function normalizeDashRuns(value) {
+  if (!value) {
+    return value;
+  }
+
+  return value
+    .split('\n')
+    .map((line) => {
+      if (line.trim() === '---') {
+        return line;
+      }
+
+      return line.replace(/\s*---\s*/g, ' - ');
+    })
+    .join('\n');
+}
+
 function renderEpigraphParagraph(paragraph) {
   const cleaned = stripWrappingEmphasis(paragraph)
     .replace(/^>\s?/gm, '')
     .trim();
 
-  return renderInlineHtml(cleaned).replace(/\n/g, '<br/>');
+  return renderInlineHtml(normalizeDashRuns(cleaned)).replace(/\n/g, '<br/>');
 }
 
 function buildEpigraph(entries) {
@@ -422,13 +439,13 @@ function normalizeBody(paragraphs) {
       }
 
       if (trimmed.startsWith('<') || trimmed.startsWith('#') || trimmed.startsWith('import') || trimmed.length < 50) {
-        return trimmed;
+        return normalizeDashRuns(trimmed);
       }
 
-      return trimmed
+      return normalizeDashRuns(trimmed
         .replace(/\n(?![#>\-*+\d.])/g, ' ')
         .replace(/\s+/g, ' ')
-        .trim();
+        .trim());
     })
     .filter(Boolean)
     .join('\n\n')
