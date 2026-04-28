@@ -13,6 +13,15 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-04-23-the-russians-arrive-on-the-riviera',
+    modulePath: './2026-04-23-the-russians-arrive-on-the-riviera.mdx',
+    metadata: {
+      title: 'The Russians Arrive on the Riviera',
+      date: formatDate('2026-04-23'),
+      image: '/images/missives/RussianRiviera.png',
+    },
+  },
+  {
     slug: '2026-04-17-cherokee-casinos-and-tornado-shelters',
     modulePath: './2026-04-17-cherokee-casinos-and-tornado-shelters.mdx',
     metadata: {

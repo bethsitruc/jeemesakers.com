@@ -198,41 +198,21 @@ function countQuoteCharacters(value) {
   return matches ? matches.length : 0;
 }
 
-function looksLikeQuote(paragraph) {
-  const plain = stripWrappingEmphasis(paragraph).trim();
-  const lineCount = plain.split('\n').length;
-
-  if (!plain || plain === '[BODY]' || plain === '[BREAK]') {
-    return false;
-  }
-
-  if (/^>/.test(plain)) {
-    return true;
-  }
-
-  if (/^["“'`]/.test(plain)) {
-    return true;
-  }
-
-  if (paragraph !== stripWrappingEmphasis(paragraph)) {
-    return true;
-  }
-
-  if (lineCount > 1 && countQuoteCharacters(plain) >= 1) {
-    return true;
-  }
-
-  return false;
+function stripBlockquoteMarkers(value) {
+  return value.replace(/^>\s?/gm, '');
 }
 
-function looksLikeAuthor(paragraph) {
-  const plain = stripWrappingEmphasis(paragraph).trim();
+function isBlockquoteParagraph(value) {
+  const lines = value
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
 
+  return lines.length > 0 && lines.every((line) => line.startsWith('>'));
+}
+
+function looksLikeAuthorText(plain) {
   if (!plain || plain === '[BODY]' || plain === '[BREAK]') {
-    return false;
-  }
-
-  if (looksLikeQuote(paragraph)) {
     return false;
   }
 
@@ -251,14 +231,87 @@ function looksLikeAuthor(paragraph) {
   return /^(\(?[A-Z0-9][^.!?]*|--\s*.+)$/.test(plain);
 }
 
+function looksLikeQuote(paragraph) {
+  const plain = stripWrappingEmphasis(stripBlockquoteMarkers(paragraph)).trim();
+  const blockquote = isBlockquoteParagraph(paragraph);
+
+  if (!plain || plain === '[BODY]' || plain === '[BREAK]') {
+    return false;
+  }
+
+  if (/^["“'`]/.test(plain)) {
+    return true;
+  }
+
+  if (paragraph !== stripWrappingEmphasis(paragraph)) {
+    return true;
+  }
+
+  const lines = plain
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (
+    lines.length > 1
+    && /^["“'`]/.test(lines[0])
+    && /["”'`]$/.test(lines[lines.length - 1])
+    && countQuoteCharacters(plain) >= 2
+  ) {
+    return true;
+  }
+
+  if (blockquote && looksLikeAuthorText(plain)) {
+    return false;
+  }
+
+  return false;
+}
+
+function looksLikeAuthor(paragraph) {
+  const plain = stripWrappingEmphasis(stripBlockquoteMarkers(paragraph)).trim();
+
+  if (!plain || plain === '[BODY]' || plain === '[BREAK]') {
+    return false;
+  }
+
+  if (looksLikeQuote(paragraph)) {
+    return false;
+  }
+
+  return looksLikeAuthorText(plain);
+}
+
+function looksLikeQuotedAttribution(paragraph, nextParagraph = '') {
+  const plain = stripWrappingEmphasis(paragraph).trim();
+
+  if (!plain || !/^["“'`].+["”'`]$/.test(plain) || plain.includes('\n')) {
+    return false;
+  }
+
+  if (plain.length > 160) {
+    return false;
+  }
+
+  return looksLikeAuthor(nextParagraph);
+}
+
 function parseEpigraphSection(paragraphs) {
   const entry = {
     quotes: [],
     authors: [],
   };
 
-  for (const paragraph of paragraphs) {
+  for (let index = 0; index < paragraphs.length; index += 1) {
+    const paragraph = paragraphs[index];
+    const nextParagraph = paragraphs[index + 1];
+
     if (looksLikeQuote(paragraph)) {
+      if (entry.quotes.length > 0 && looksLikeQuotedAttribution(paragraph, nextParagraph)) {
+        entry.authors.push(paragraph);
+        continue;
+      }
+
       entry.quotes.push(paragraph);
     } else if (paragraph !== '[BODY]' && paragraph !== '[BREAK]' && paragraph.trim()) {
       entry.authors.push(paragraph);
@@ -330,6 +383,12 @@ function parseEpigraphEntries(paragraphs) {
     }
 
     if (looksLikeQuote(paragraph) && current.authors.length === 0) {
+      if (looksLikeQuotedAttribution(paragraph, paragraphs[index + 1])) {
+        current.authors.push(paragraph);
+        consumed = index + 1;
+        continue;
+      }
+
       current.quotes.push(paragraph);
       consumed = index + 1;
       continue;
@@ -394,6 +453,7 @@ function normalizeDashRuns(value) {
 function renderEpigraphParagraph(paragraph) {
   const cleaned = stripWrappingEmphasis(paragraph)
     .replace(/^>\s?/gm, '')
+    .replace(/\\\n/g, '\n')
     .trim();
 
   return renderInlineHtml(normalizeDashRuns(cleaned)).replace(/\n/g, '<br/>');
@@ -902,7 +962,16 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(`\nImport failed: ${error.message}`);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(`\nImport failed: ${error.message}`);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  buildEpigraph,
+  looksLikeAuthor,
+  looksLikeQuote,
+  parseEpigraphEntries,
+};
