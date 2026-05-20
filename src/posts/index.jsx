@@ -13,6 +13,15 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-05-18-china-summits-present-and-past',
+    modulePath: './2026-05-18-china-summits-present-and-past.mdx',
+    metadata: {
+      title: 'China Summits: Present and Past',
+      date: formatDate('2026-05-18'),
+      image: '/images/missives/Nixon-China.png',
+    },
+  },
+  {
     slug: '2026-05-09-the-romanov-giant-émigré-on-the-riviera',
     modulePath: './2026-05-09-the-romanov-giant-émigré-on-the-riviera.mdx',
     metadata: {

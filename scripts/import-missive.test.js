@@ -50,3 +50,54 @@ test('multi-line quotes are still recognized as quotes', () => {
     true
   );
 });
+
+test('authorless epigraph entries with trailing footnotes are preserved', () => {
+  const parsed = parseEpigraphEntries([
+    '"First quote."',
+    'Author One',
+    '[BREAK]',
+    '"Second quote."',
+    'Author Two[^1]',
+    '[BREAK]',
+    '*"The summit [of 2026] is unlikely to alter the character and course\nof the U.S.-China relationship long term. It is about managing for\nstability, not solving outstanding concerns."*[^2]',
+    '[BODY]',
+    'Body copy.',
+  ]);
+
+  const epigraph = buildEpigraph(parsed.entries);
+
+  assert.equal(parsed.entries.length, 3);
+  assert.deepEqual(parsed.entries[2], {
+    quotes: ['*"The summit [of 2026] is unlikely to alter the character and course\nof the U.S.-China relationship long term. It is about managing for\nstability, not solving outstanding concerns."*[^2]'],
+    authors: [],
+  });
+  assert.match(
+    epigraph,
+    /<p>"The summit \[of 2026\] is unlikely to alter the character and course of the U\.S\.-China relationship long term\. It is about managing for stability, not solving outstanding concerns\."<Footnote number=\{2\} \/><\/p>/
+  );
+});
+
+test('soft-wrapped epigraph quote lines collapse to spaces', () => {
+  const epigraph = buildEpigraph([
+    {
+      quotes: ['"Line one\nline two\nline three."'],
+      authors: [],
+    },
+  ]);
+
+  assert.match(epigraph, /<p>"Line one line two line three\."<\/p>/);
+});
+
+test('explicit hard breaks in epigraph authors are preserved', () => {
+  const epigraph = buildEpigraph([
+    {
+      quotes: ['"Quote."'],
+      authors: ['> First line\\\n> Second line'],
+    },
+  ]);
+
+  assert.match(
+    epigraph,
+    /<div className="epigraph-author"><p>First line<br\/>Second line<\/p><\/div>/
+  );
+});

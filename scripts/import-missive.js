@@ -149,6 +149,27 @@ function stripWrappingEmphasis(value) {
   return text;
 }
 
+function splitTrailingFootnotes(value) {
+  const match = value.match(/((?:\s*\[\^\d+\])+)$/);
+
+  if (!match) {
+    return {
+      content: value,
+      footnotes: '',
+    };
+  }
+
+  return {
+    content: value.slice(0, -match[1].length),
+    footnotes: match[1].replace(/\s+/g, ''),
+  };
+}
+
+function stripWrappingEmphasisPreservingFootnotes(value) {
+  const { content, footnotes } = splitTrailingFootnotes(value.trim());
+  return `${stripWrappingEmphasis(content)}${footnotes}`;
+}
+
 function normalizeMarkers(content) {
   return content
     .replace(/^[*_]+\s*\\?\[(BODY|BREAK)\\?\]\s*[*_]+\s*$/gm, '[$1]')
@@ -232,7 +253,7 @@ function looksLikeAuthorText(plain) {
 }
 
 function looksLikeQuote(paragraph) {
-  const plain = stripWrappingEmphasis(stripBlockquoteMarkers(paragraph)).trim();
+  const plain = stripWrappingEmphasisPreservingFootnotes(stripBlockquoteMarkers(paragraph)).trim();
   const blockquote = isBlockquoteParagraph(paragraph);
 
   if (!plain || plain === '[BODY]' || plain === '[BREAK]') {
@@ -269,7 +290,7 @@ function looksLikeQuote(paragraph) {
 }
 
 function looksLikeAuthor(paragraph) {
-  const plain = stripWrappingEmphasis(stripBlockquoteMarkers(paragraph)).trim();
+  const plain = stripWrappingEmphasisPreservingFootnotes(stripBlockquoteMarkers(paragraph)).trim();
 
   if (!plain || plain === '[BODY]' || plain === '[BREAK]') {
     return false;
@@ -283,7 +304,7 @@ function looksLikeAuthor(paragraph) {
 }
 
 function looksLikeQuotedAttribution(paragraph, nextParagraph = '') {
-  const plain = stripWrappingEmphasis(paragraph).trim();
+  const plain = stripWrappingEmphasisPreservingFootnotes(paragraph).trim();
 
   if (!plain || !/^["“'`].+["”'`]$/.test(plain) || plain.includes('\n')) {
     return false;
@@ -450,13 +471,25 @@ function normalizeDashRuns(value) {
     .join('\n');
 }
 
+function normalizeEpigraphLineBreaks(value) {
+  const hardBreakToken = '<<<MISSIVE_HARD_BREAK>>>';
+
+  return value
+    .replace(/\\\n/g, hardBreakToken)
+    .replace(/\n+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(new RegExp(hardBreakToken, 'g'), '\n')
+    .trim();
+}
+
 function renderEpigraphParagraph(paragraph) {
-  const cleaned = stripWrappingEmphasis(paragraph)
+  const cleaned = stripWrappingEmphasisPreservingFootnotes(paragraph)
     .replace(/^>\s?/gm, '')
-    .replace(/\\\n/g, '\n')
     .trim();
 
-  return renderInlineHtml(normalizeDashRuns(cleaned)).replace(/\n/g, '<br/>');
+  return renderInlineHtml(normalizeDashRuns(normalizeEpigraphLineBreaks(cleaned)))
+    .replace(/\[\^(\d+)\]/g, '<Footnote number={$1} />')
+    .replace(/\n/g, '<br/>');
 }
 
 function buildEpigraph(entries) {
