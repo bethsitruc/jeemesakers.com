@@ -492,6 +492,16 @@ function renderEpigraphParagraph(paragraph) {
     .replace(/\n/g, '<br/>');
 }
 
+function renderBlockquoteParagraph(paragraph) {
+  const cleaned = paragraph
+    .replace(/^>\s?/gm, '')
+    .trim();
+
+  return `<blockquote><p>${renderInlineHtml(normalizeDashRuns(normalizeEpigraphLineBreaks(cleaned)))
+    .replace(/\[\^(\d+)\]/g, '<Footnote number={$1} />')
+    .replace(/\n/g, '<br/>')}</p></blockquote>`;
+}
+
 function buildEpigraph(entries) {
   if (!entries.length) {
     return '';
@@ -529,6 +539,10 @@ function normalizeBody(paragraphs) {
 
       if (!trimmed) {
         return '';
+      }
+
+      if (isBlockquoteParagraph(trimmed)) {
+        return renderBlockquoteParagraph(trimmed);
       }
 
       if (trimmed.startsWith('<') || trimmed.startsWith('#') || trimmed.startsWith('import') || trimmed.length < 50) {
@@ -745,6 +759,10 @@ function renderBodyParagraph(paragraph) {
 
   if (!trimmed) {
     return '';
+  }
+
+  if (trimmed.startsWith('<')) {
+    return trimmed;
   }
 
   if (/^#{1,6}\s+/.test(trimmed)) {
@@ -1006,5 +1024,6 @@ module.exports = {
   buildEpigraph,
   looksLikeAuthor,
   looksLikeQuote,
+  normalizeBody,
   parseEpigraphEntries,
 };

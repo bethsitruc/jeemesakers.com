@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const {
   buildEpigraph,
   looksLikeQuote,
+  normalizeBody,
   parseEpigraphEntries,
 } = require('./import-missive.js');
 
@@ -99,5 +100,27 @@ test('explicit hard breaks in epigraph authors are preserved', () => {
   assert.match(
     epigraph,
     /<div className="epigraph-author"><p>First line<br\/>Second line<\/p><\/div>/
+  );
+});
+
+test('body blockquotes are emitted as HTML and soft wraps collapse', () => {
+  const body = normalizeBody([
+    '> "When we take account of realistic uncertainty, replacing point\n> estimates by probability distributions that reflect current scientific\n> understanding, we find no reason to be highly confident."[^10]',
+  ]);
+
+  assert.match(
+    body,
+    /^<blockquote><p>"When we take account of realistic uncertainty, replacing point estimates by probability distributions that reflect current scientific understanding, we find no reason to be highly confident\."<Footnote number=\{10\} \/><\/p><\/blockquote>$/
+  );
+});
+
+test('body blockquotes preserve explicit hard breaks', () => {
+  const body = normalizeBody([
+    '> First line\\\n> Second line',
+  ]);
+
+  assert.match(
+    body,
+    /^<blockquote><p>First line<br\/>Second line<\/p><\/blockquote>$/
   );
 });
