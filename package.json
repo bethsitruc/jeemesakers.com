@@ -48,6 +48,6 @@
     "@mdx-js/rollup": "^2.3.0",
     "@vitejs/plugin-react": "^6.0.1",
     "terser": "^5.46.1",
-    "vite": "^8.0.5"
+    "vite": "^8.0.16"
   }
 }
