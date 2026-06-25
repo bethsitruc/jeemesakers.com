@@ -1,27 +1,58 @@
-# Contributing to jeemesakers.com
+# Collaborating on jeemesakers.com
 
-Thank you for your interest in this project! This is a personal website for James Akers.
+This repository is not open for public contribution. Please do not fork this repository, submit unsolicited pull requests, or use the source code, content, or design in another project.
 
-## Guidelines
+Approved collaborators should work from the private project plan or issue assigned by the maintainer.
 
-- This repository is primarily maintained by the site owner
-- If you notice any issues or have suggestions, please open an issue rather than submitting code changes
-- For typos or minor corrections, feel free to submit a pull request
-- For larger changes, please open an issue first to discuss
+## Project Overview
 
-## Process
+The site rebuild preserves and extends the original Jeemes Akers website with a modern static React implementation.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Make your changes
-4. Commit your changes (`git commit -am 'Add some feature'`)
-5. Push to the branch (`git push origin feature/your-feature`)
-6. Create a Pull Request
+Goals:
 
-## Code of Conduct
+- Preserve the look and feel of the original Wix design.
+- Improve performance and maintainability.
+- Make content updates easier, especially for Missives.
+- Keep better control over structure, style, and hosting.
 
-Please be respectful and professional in all interactions.
+## Tech Stack
 
----
+- React
+- Vite
+- Markdown/MDX for long-form content
+- React Router
+- Custom CSS
+- Static hosting
 
-*Note: All pull requests require review and approval before merging.*
+## Content Management
+
+Each Missive is stored as an individual `.mdx` file inside `src/posts/`. The site uses `src/posts/index.jsx` as the curated source of truth for the title, date, image, and slug shown in the Missive list and post page.
+
+### Importing a New Missive
+
+Use the local importer instead of creating the file and editing `src/posts/index.jsx` by hand:
+
+```bash
+npm run import:missive -- "/absolute/path/to/missive.docx" --date 2026-03-10
+```
+
+Helpful options:
+
+- `--date YYYY-MM-DD` sets the filename date and the date used in `src/posts/index.jsx`.
+- `--title "Site Title"` overrides the title used for the site list and post page.
+- `--slug some-slug` overrides the filename slug if needed.
+- `--image /images/missives/custom-image.png` sets the list image path.
+- `--preview` writes both an MDX preview and a simple HTML preview to `/tmp`.
+- `--confirm` shows the same preview, then asks before writing files.
+- `--dry-run` previews the import without writing files.
+
+## Development
+
+Authorized collaborators can use:
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
