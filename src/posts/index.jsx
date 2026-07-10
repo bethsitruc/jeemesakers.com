@@ -13,6 +13,15 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-07-06-a-true-mountain-poet',
+    modulePath: './2026-07-06-a-true-mountain-poet.mdx',
+    metadata: {
+      title: 'A True Mountain Poet',
+      date: formatDate('2026-07-06'),
+      image: '/images/missives/MountainPoet.png',
+    },
+  },
+  {
     slug: '2026-05-29-a-simple-question-extraterrestrial-life',
     modulePath: './2026-05-29-a-simple-question-extraterrestrial-life.mdx',
     metadata: {

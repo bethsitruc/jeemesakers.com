@@ -1,5 +1,21 @@
 import React from 'react';
 
+function renderReferenceText(reference) {
+  if (React.isValidElement(reference)) {
+    return reference;
+  }
+
+  const parts = String(reference).split(/(\*[^*\n]+\*)/g);
+
+  return parts.map((part, index) => {
+    if (/^\*[^*\n]+\*$/.test(part)) {
+      return <em key={index}>{part.slice(1, -1)}</em>;
+    }
+
+    return part;
+  });
+}
+
 // ReferenceList component displays a list of references with back-links to footnotes
 function ReferenceList({ references }) {
   // If there are no references, render nothing
@@ -12,7 +28,7 @@ function ReferenceList({ references }) {
         {/* Render each reference as a paragraph with a back-link */}
         {references.map((ref, index) => (
           <p key={index} id={`ref-${index + 1}`}>
-            {ref}
+            {renderReferenceText(ref)}
             {' '}
             <a href={`#fn-${index + 1}`} aria-label="Back to footnote">↩</a>
           </p>

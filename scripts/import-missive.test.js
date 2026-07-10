@@ -3,9 +3,12 @@ const assert = require('node:assert/strict');
 
 const {
   buildEpigraph,
+  buildMdx,
+  extractReferences,
   looksLikeQuote,
   normalizeBody,
   parseEpigraphEntries,
+  renderReferenceEntry,
 } = require('./import-missive.js');
 
 test('multi-line author paragraphs with quoted source titles stay in the author block', () => {
@@ -123,4 +126,45 @@ test('body blockquotes preserve explicit hard breaks', () => {
     body,
     /^<blockquote><p>First line<br\/>Second line<\/p><\/blockquote>$/
   );
+});
+
+test('plain references are serialized as valid JavaScript strings', () => {
+  assert.equal(
+    renderReferenceEntry('Christopher Check, "Under Mary\'s Holy Name."', 2),
+    '"[3] Christopher Check, \\"Under Mary\'s Holy Name.\\""'
+  );
+});
+
+test('italic title markers in references are emitted as emphasis', () => {
+  assert.equal(
+    renderReferenceEntry('Stewart, Al, *The Untoward Hills,* Morehead State College Press, 1962.', 1),
+    '<>{"[2] Stewart, Al, "}<em>{"The Untoward Hills,"}</em>{" Morehead State College Press, 1962."}</>'
+  );
+});
+
+test('HTML links in references are emitted as JSX fragments', () => {
+  assert.equal(
+    renderReferenceEntry('Carnegie Center, see <a href="https://carnegiecenterlex.org/hall-of-fame/albert-stewart/" target="_blank" rel="noreferrer">https://carnegiecenterlex.org/hall-of-fame/albert-stewart/</a>.', 1),
+    '<>{"[2] Carnegie Center, see "}<a href="https://carnegiecenterlex.org/hall-of-fame/albert-stewart/" target="_blank" rel="noreferrer">{"https://carnegiecenterlex.org/hall-of-fame/albert-stewart/"}</a>{"."}</>'
+  );
+});
+
+test('markdown links in references are emitted as JSX fragments', () => {
+  assert.equal(
+    renderReferenceEntry('Carnegie Center, see [Albert Stewart](https://carnegiecenterlex.org/hall-of-fame/albert-stewart/).', 1),
+    '<>{"[2] Carnegie Center, see "}<a href="https://carnegiecenterlex.org/hall-of-fame/albert-stewart/" target="_blank" rel="noreferrer">{"Albert Stewart"}</a>{"."}</>'
+  );
+});
+
+test('reference links survive full MDX assembly', () => {
+  const { body, references } = extractReferences('Body copy.[^1]\n\n[^1]: Carnegie Center, see [Albert Stewart](https://carnegiecenterlex.org/hall-of-fame/albert-stewart/).');
+  const mdx = buildMdx({
+    epigraph: '',
+    body,
+    references,
+  });
+
+  assert.match(mdx, /Body copy\.<Footnote number=\{1\} \/>/);
+  assert.match(mdx, /<ReferenceList references=\{\[/);
+  assert.match(mdx, /<a href="https:\/\/carnegiecenterlex\.org\/hall-of-fame\/albert-stewart\/" target="_blank" rel="noreferrer">\{"Albert Stewart"\}<\/a>/);
 });

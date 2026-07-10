@@ -570,7 +570,6 @@ function extractReferences(content) {
       match[2]
         .replace(/\n\s+/g, ' ')
         .replace(/\s+/g, ' ')
-        .replace(/"/g, '\\"')
         .trim()
     );
   }
@@ -583,6 +582,108 @@ function extractReferences(content) {
   return { body, references };
 }
 
+function parseReferenceLinks(reference) {
+  const tokens = [];
+  const linkRegex = /<a\b[^>]*\bhref=(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>|\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/gi;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkRegex.exec(reference)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({
+        type: 'text',
+        value: reference.slice(lastIndex, match.index),
+      });
+    }
+
+    tokens.push({
+      type: 'link',
+      href: match[2] || match[5],
+      label: match[3] || match[4],
+    });
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  if (lastIndex < reference.length) {
+    tokens.push({
+      type: 'text',
+      value: reference.slice(lastIndex),
+    });
+  }
+
+  return tokens;
+}
+
+function parseReferenceEmphasis(value) {
+  const tokens = [];
+  const emphasisRegex = /\*([^*\n]+)\*/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = emphasisRegex.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({
+        type: 'text',
+        value: value.slice(lastIndex, match.index),
+      });
+    }
+
+    tokens.push({
+      type: 'emphasis',
+      value: match[1],
+    });
+    lastIndex = emphasisRegex.lastIndex;
+  }
+
+  if (lastIndex < value.length) {
+    tokens.push({
+      type: 'text',
+      value: value.slice(lastIndex),
+    });
+  }
+
+  return tokens;
+}
+
+function parseReferenceMarkup(reference) {
+  return parseReferenceLinks(reference).flatMap((token) => {
+    if (token.type !== 'text') {
+      return token;
+    }
+
+    return parseReferenceEmphasis(token.value);
+  });
+}
+
+function renderJsxText(value) {
+  if (!value) {
+    return '';
+  }
+
+  return `{${JSON.stringify(value)}}`;
+}
+
+function renderReferenceEntry(reference, index) {
+  const numberedReference = `[${index + 1}] ${reference}`;
+  const tokens = parseReferenceMarkup(numberedReference);
+
+  if (!tokens.some((token) => token.type === 'link' || token.type === 'emphasis')) {
+    return JSON.stringify(numberedReference);
+  }
+
+  return `<>${tokens.map((token) => {
+    if (token.type === 'link') {
+      return `<a href=${JSON.stringify(token.href)} target="_blank" rel="noreferrer">${renderJsxText(token.label)}</a>`;
+    }
+
+    if (token.type === 'emphasis') {
+      return `<em>${renderJsxText(token.value)}</em>`;
+    }
+
+    return renderJsxText(token.value);
+  }).join('')}</>`;
+}
+
 function buildMdx({ epigraph, body, references }) {
   const imports = [
     "import Footnote from '../components/Footnote';",
@@ -591,7 +692,7 @@ function buildMdx({ epigraph, body, references }) {
     '',
   ].join('\n');
 
-  const referenceBlock = `<ReferenceList references={[\n${references.map((reference, index) => `  "[${index + 1}] ${reference}"`).join(',\n')}\n]} />`;
+  const referenceBlock = `<ReferenceList references={[\n${references.map((reference, index) => `  ${renderReferenceEntry(reference, index)}`).join(',\n')}\n]} />`;
   const sections = [imports];
 
   if (epigraph) {
@@ -1022,8 +1123,11 @@ if (require.main === module) {
 
 module.exports = {
   buildEpigraph,
+  buildMdx,
+  extractReferences,
   looksLikeAuthor,
   looksLikeQuote,
   normalizeBody,
   parseEpigraphEntries,
+  renderReferenceEntry,
 };
