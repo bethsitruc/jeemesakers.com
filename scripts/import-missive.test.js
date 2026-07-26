@@ -128,6 +128,36 @@ test('body blockquotes preserve explicit hard breaks', () => {
   );
 });
 
+test('body-wide Word indentation artifacts are not emitted as blockquotes', () => {
+  const body = normalizeBody([
+    'An ordinary introductory paragraph.',
+    [
+      '> First body paragraph with enough prose to represent normal missive copy.',
+      '>',
+      '> Second body paragraph continues the article rather than quoting a source.',
+      '>',
+      '> Third body paragraph is another part of the same imported Word document.',
+      '>',
+      '> Fourth body paragraph remains ordinary narrative text in the missive.',
+      '>',
+      '> Fifth body paragraph closes the long indented run created by Word.',
+    ].join('\n'),
+  ]);
+
+  assert.doesNotMatch(body, /<blockquote>/);
+  assert.match(body, /An ordinary introductory paragraph\.\n\nFirst body paragraph/);
+  assert.match(body, /Fourth body paragraph remains ordinary narrative text in the missive\.\n\nFifth body paragraph/);
+});
+
+test('a short intentional body blockquote stays a blockquote', () => {
+  const body = normalizeBody([
+    'An ordinary introductory paragraph.',
+    '> First quoted paragraph.\n>\n> Second quoted paragraph.',
+  ]);
+
+  assert.match(body, /<blockquote><p>First quoted paragraph\. Second quoted paragraph\.<\/p><\/blockquote>/);
+});
+
 test('plain references are serialized as valid JavaScript strings', () => {
   assert.equal(
     renderReferenceEntry('Christopher Check, "Under Mary\'s Holy Name."', 2),

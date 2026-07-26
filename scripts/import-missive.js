@@ -220,7 +220,7 @@ function countQuoteCharacters(value) {
 }
 
 function stripBlockquoteMarkers(value) {
-  return value.replace(/^>\s?/gm, '');
+  return value.replace(/^>[ \t]?/gm, '');
 }
 
 function isBlockquoteParagraph(value) {
@@ -484,7 +484,7 @@ function normalizeEpigraphLineBreaks(value) {
 
 function renderEpigraphParagraph(paragraph) {
   const cleaned = stripWrappingEmphasisPreservingFootnotes(paragraph)
-    .replace(/^>\s?/gm, '')
+    .replace(/^>[ \t]?/gm, '')
     .trim();
 
   return renderInlineHtml(normalizeDashRuns(normalizeEpigraphLineBreaks(cleaned)))
@@ -494,12 +494,42 @@ function renderEpigraphParagraph(paragraph) {
 
 function renderBlockquoteParagraph(paragraph) {
   const cleaned = paragraph
-    .replace(/^>\s?/gm, '')
+    .replace(/^>[ \t]?/gm, '')
     .trim();
 
   return `<blockquote><p>${renderInlineHtml(normalizeDashRuns(normalizeEpigraphLineBreaks(cleaned)))
     .replace(/\[\^(\d+)\]/g, '<Footnote number={$1} />')
     .replace(/\n/g, '<br/>')}</p></blockquote>`;
+}
+
+function unwrapBodyWideIndentationArtifact(paragraphs) {
+  const totalLength = paragraphs.reduce(
+    (sum, paragraph) => sum + stripBlockquoteMarkers(paragraph).trim().length,
+    0
+  );
+
+  return paragraphs.map((paragraph, index) => {
+    if (index === 0 || !isBlockquoteParagraph(paragraph)) {
+      return paragraph;
+    }
+
+    const unwrapped = stripBlockquoteMarkers(paragraph).trim();
+    const logicalParagraphs = unwrapped
+      .split(/\n\s*\n/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+    const occupiesMostOfBody = totalLength > 0 && unwrapped.length / totalLength >= 0.75;
+
+    // Word sometimes represents ordinary first-line indentation in a way that
+    // Pandoc interprets as one enormous blockquote. A genuine body quote is
+    // normally much shorter; only unwrap a multi-paragraph quote that consumes
+    // nearly all of the body and follows ordinary introductory copy.
+    if (logicalParagraphs.length >= 5 && occupiesMostOfBody) {
+      return unwrapped;
+    }
+
+    return paragraph;
+  });
 }
 
 function buildEpigraph(entries) {
@@ -527,7 +557,7 @@ function buildEpigraph(entries) {
 }
 
 function normalizeBody(paragraphs) {
-  return paragraphs
+  return unwrapBodyWideIndentationArtifact(paragraphs)
     .join('\n\n')
     .replace(/\\?\[BREAK\\?\]/g, '')
     .replace(/\[BREAK\]/g, '')

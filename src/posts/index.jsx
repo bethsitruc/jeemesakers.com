@@ -13,6 +13,15 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-07-22-two-oil-paintings',
+    modulePath: './2026-07-22-two-oil-paintings.mdx',
+    metadata: {
+      title: 'Two Oil Paintings',
+      date: formatDate('2026-07-22'),
+      image: '/images/missives/two-oil-paintings.png',
+    },
+  },
+  {
     slug: '2026-07-06-a-true-mountain-poet',
     modulePath: './2026-07-06-a-true-mountain-poet.mdx',
     metadata: {
@@ -478,4 +487,3 @@ export async function loadPostComponent(post) {
   const module = await loader();
   return module.default;
 }
-
