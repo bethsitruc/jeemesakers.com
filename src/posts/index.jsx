@@ -13,6 +13,15 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-08-08-technology-breakthroughs-germanys-v-2',
+    modulePath: './2026-08-08-technology-breakthroughs-germanys-v-2.mdx',
+    metadata: {
+      title: 'Technology Breakthroughs: Germany\'s V-2',
+      date: formatDate('2026-08-08'),
+      image: '/images/missives/v2-rocket.png',
+    },
+  },
+  {
     slug: '2026-07-30-middle-east-gamechanger',
     modulePath: './2026-07-30-middle-east-gamechanger.mdx',
     metadata: {

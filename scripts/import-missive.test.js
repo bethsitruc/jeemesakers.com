@@ -81,6 +81,22 @@ test('authorless epigraph entries with trailing footnotes are preserved', () => 
   );
 });
 
+test('a colon-ended introduction starts the body after the epigraph', () => {
+  const parsed = parseEpigraphEntries([
+    '"We have invaded space with our rockets."',
+    'General Walter Dornberger[^3]',
+    'I deleted the following paragraph from my last missive:',
+    '> "How did we get here?"\n>\n> The body continues here.',
+  ]);
+
+  assert.equal(parsed.entries.length, 1);
+  assert.deepEqual(parsed.entries[0].authors, ['General Walter Dornberger[^3]']);
+  assert.deepEqual(parsed.bodyParagraphs, [
+    'I deleted the following paragraph from my last missive:',
+    '> "How did we get here?"\n>\n> The body continues here.',
+  ]);
+});
+
 test('soft-wrapped epigraph quote lines collapse to spaces', () => {
   const epigraph = buildEpigraph([
     {
@@ -147,6 +163,46 @@ test('body-wide Word indentation artifacts are not emitted as blockquotes', () =
   assert.doesNotMatch(body, /<blockquote>/);
   assert.match(body, /An ordinary introductory paragraph\.\n\nFirst body paragraph/);
   assert.match(body, /Fourth body paragraph remains ordinary narrative text in the missive\.\n\nFifth body paragraph/);
+});
+
+test('trailing references do not prevent body-wide indentation cleanup', () => {
+  const body = normalizeBody([
+    'An ordinary introductory paragraph.',
+    [
+      '> First body paragraph in a Word-indented run.',
+      '>',
+      '> Second body paragraph in the run.',
+      '>',
+      '> Third body paragraph in the run.',
+      '>',
+      '> Fourth body paragraph in the run.',
+      '>',
+      '> Fifth body paragraph closes the run.',
+    ].join('\n'),
+    '[^1]: A long reference entry that should not count as article body. '.repeat(20),
+  ]);
+
+  assert.doesNotMatch(body, /<blockquote>/);
+});
+
+test('an intended opening quote survives body-wide indentation cleanup', () => {
+  const body = normalizeBody([
+    'The following paragraph appeared in an earlier missive:',
+    [
+      '> "This paragraph is intentionally quoted."',
+      '>',
+      '> First ordinary body paragraph.',
+      '>',
+      '> Second ordinary body paragraph.',
+      '>',
+      '> Third ordinary body paragraph.',
+      '>',
+      '> Fourth ordinary body paragraph.',
+    ].join('\n'),
+  ]);
+
+  assert.match(body, /<blockquote><p>"This paragraph is intentionally quoted\."<\/p><\/blockquote>/);
+  assert.match(body, /<\/blockquote>\n\nFirst ordinary body paragraph\./);
 });
 
 test('a short intentional body blockquote stays a blockquote', () => {
