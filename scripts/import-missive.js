@@ -249,6 +249,13 @@ function looksLikeAuthorText(plain) {
     return false;
   }
 
+  // A sentence ending with a colon usually introduces the body or a following
+  // quotation; it is not an epigraph attribution. Treating it as an author can
+  // cause the remainder of a Word-indented document to be absorbed by Epigraph.
+  if (/:$/.test(plain)) {
+    return false;
+  }
+
   return /^(\(?[A-Z0-9][^.!?]*|--\s*.+)$/.test(plain);
 }
 
@@ -503,12 +510,16 @@ function renderBlockquoteParagraph(paragraph) {
 }
 
 function unwrapBodyWideIndentationArtifact(paragraphs) {
-  const totalLength = paragraphs.reduce(
+  const firstReferenceIndex = paragraphs.findIndex((paragraph) => /^\[\^\d+\]:/.test(paragraph.trim()));
+  const articleParagraphs = firstReferenceIndex >= 0
+    ? paragraphs.slice(0, firstReferenceIndex)
+    : paragraphs;
+  const totalLength = articleParagraphs.reduce(
     (sum, paragraph) => sum + stripBlockquoteMarkers(paragraph).trim().length,
     0
   );
 
-  return paragraphs.map((paragraph, index) => {
+  return paragraphs.flatMap((paragraph, index) => {
     if (index === 0 || !isBlockquoteParagraph(paragraph)) {
       return paragraph;
     }
@@ -525,7 +536,20 @@ function unwrapBodyWideIndentationArtifact(paragraphs) {
     // normally much shorter; only unwrap a multi-paragraph quote that consumes
     // nearly all of the body and follows ordinary introductory copy.
     if (logicalParagraphs.length >= 5 && occupiesMostOfBody) {
-      return unwrapped;
+      const [firstParagraph, ...remainingParagraphs] = logicalParagraphs;
+
+      // Preserve the genuinely quoted opening paragraph when Word has
+      // accidentally carried its quote indentation through the rest of the
+      // document, then return the remaining paragraphs to normal body copy.
+      if (/^["“]/.test(firstParagraph)) {
+        const restoredQuote = firstParagraph
+          .split('\n')
+          .map((line) => `> ${line}`)
+          .join('\n');
+        return [restoredQuote, ...remainingParagraphs];
+      }
+
+      return logicalParagraphs;
     }
 
     return paragraph;
