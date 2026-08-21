@@ -7,7 +7,7 @@
   "homepage": "https://jeemesakers.com",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-route-pages.js",
     "import:missive": "node scripts/import-missive.js",
     "preview": "vite preview"
   },
