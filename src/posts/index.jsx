@@ -13,6 +13,15 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-09-07-from-kudzu-covered-coal-mines-to-leo-buscaglia',
+    modulePath: './2026-09-07-from-kudzu-covered-coal-mines-to-leo-buscaglia.mdx',
+    metadata: {
+      title: 'From Kudzu-Covered Coal Mines to Leo Buscaglia',
+      date: formatDate('2026-09-07'),
+      image: '/images/missives/kudzu-covered-coal-mines.jpg',
+    },
+  },
+  {
     slug: '2026-08-19-thirty-five-years-ago-today',
     modulePath: './2026-08-19-thirty-five-years-ago-today.mdx',
     metadata: {
