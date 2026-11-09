@@ -65,7 +65,7 @@ function Missive() {
         </div>
         {/* Display the post image */}
         <div className="missive-tile-image">
-            <img src={post.metadata.image} alt={title} />
+            <img src={post.metadata.image} alt={post.metadata.imageAlt || title} />
         </div>
         {/* Render the post content (MDX or JSX) */}
         {loadError ? <p>Unable to load this missive right now.</p> : PostComponent ? <PostComponent /> : <p>Loading missive...</p>}

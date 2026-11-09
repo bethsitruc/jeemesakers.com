@@ -13,6 +13,16 @@ const formatDate = (dateString) => {
 // Metadata for missive routes and the missive index.
 export const posts = [
   {
+    slug: '2026-11-09-from-berlin-to-prague-and-back-again',
+    modulePath: './2026-11-09-from-berlin-to-prague-and-back-again.mdx',
+    metadata: {
+      title: 'From Berlin to Prague and Back Again',
+      date: formatDate('2026-11-09'),
+      image: '/images/missives/berlin-to-prague.jpg',
+      imageAlt: 'Four travelers standing together outside a historic stone doorway during a trip through Germany and the Czech Republic.',
+    },
+  },
+  {
     slug: '2026-09-07-from-kudzu-covered-coal-mines-to-leo-buscaglia',
     modulePath: './2026-09-07-from-kudzu-covered-coal-mines-to-leo-buscaglia.mdx',
     metadata: {
